@@ -1,9 +1,7 @@
 <docty
 <html>
-
 <body>
-
-		<form>
+		<form action = "loginHandler.php">
             <fieldset>
 			<legend>Login</legend>
 				<input type="text" name="userName" placeholder="Username"><br/>
@@ -13,15 +11,14 @@
                             <option value="admin">Admin</option>
                             <option value="customer" selected>Customer</option>
                             <option value="employee">Employee</option>
-                 </select>
+                </select>
                  <hr>
 				 <input type="checkbox" name="rememeber" value="1"> Remember Me<br/>
-				<input type="submit" value="Login"><a href="signup.html">Register</a> <br><a href="forget.html">Forget Password?</a>
- 
+				<input type="submit" value="Login">
+				<a href="signup.html">Register</a> <br>
+				<a href="forget.html">Forget Password?</a>
             </fieldset>
-				</form>
-	</body>
-
-
+		</form>
+</body>
 </html>
 

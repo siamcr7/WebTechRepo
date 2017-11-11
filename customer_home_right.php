@@ -5,4 +5,4 @@
                         <li>Points: "shows_total_point" </li>
                         <li><a href="about_us.php">About us</a></li>
                     </ul>
-                </td>
+</td>

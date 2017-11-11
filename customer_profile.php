@@ -5,16 +5,11 @@
             <tr>
                <?php include("customer_home_left.php")?>
                 
-                <td valign="top" align="left" >
+                <td valign="top">
                     <?php include("profile_check.php")?>    
                 </td>
                 <?php include("customer_home_right.php")?>
             </tr>
-        
         </table>
-    
-     
-    
-    
 </body>
 </html>
