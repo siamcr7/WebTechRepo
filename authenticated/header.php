@@ -2,7 +2,8 @@
 	include("authorization.php");
 ?>
 <html>
-	<h1 align="left">Home Page</h1>
+	<h1 align="center">Admin Panel</h1>
+	
 	<p align="right">
 		Logged in as
 		<a href = "viewProfilePage.php" >

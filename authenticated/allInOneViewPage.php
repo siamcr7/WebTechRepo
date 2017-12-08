@@ -19,7 +19,22 @@
 		</td>
 			
 		<td colspan="2" width = "500">
-			/// CODE HERE
+			
+			<fieldset>
+				<legend>View Page</legend>			
+				<table style="width:100%">
+					<tr>
+						<td>ID :</td>
+						<td>1</td>
+					</tr>
+					
+					<tr>
+						<td>Name :</td>
+						<td>XYZ</td>
+					</tr>
+				</table>
+			</fieldset>
+			
 		</td>
 	</tr>
 	
