@@ -44,7 +44,8 @@
 	}
 	
 	
-	function viewDynamicTableInHTML()
+	
+	function viewDynamicTableInHTML($withEditOption)
 	{
 		if(true)
 		{
@@ -66,9 +67,7 @@
 						foreach($curItem as $key => $value)
 						{
 				?>
-				
 							<th ><?=$key;?></th>
-							
 				<?php		
 						}
 				?>
@@ -83,6 +82,13 @@
 					{
 				?>
 						<td ><?=$value;?></td>
+				<?php
+					}
+					if(!$firstRow && $withEditOption)
+					{
+				?>
+						<td> <a href="editProfilePage.php">Edit</a> </td>
+						<td> <a href="viewProfilePage.php">View</a> </td>
 				<?php
 					}
 				?>
