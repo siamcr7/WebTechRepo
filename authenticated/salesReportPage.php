@@ -27,42 +27,56 @@
 				another arr and send it. For now using only the static values to show.
 				*/
 				
-				
+				/*
 				include("../DynamicTable/index.php");
 				buildDynamicTable($_SESSION["userList"]);
 				viewDynamicTableInHTML(true);
+				*/
 				
 				
-				/*
-				$userArr["Name"] = "Jamil Siam";
-				$userArr["Email"] = "siam_cr7@yahoo.com";
-				$userArr["User Name"] = "siam_cr7";
+				$userArr["Food Name"] = "Smoke Burger";
+				$userArr["Food Type"] = "Burger";
+				$userArr["Purchased By"] = "siam_cr7";
+				$userArr["Purchased Quantity"] = "siam_cr7";
+				$userArr["Purchase Date"] = "11/12/2016 10:48:23 AM";
+				$userArr["Profit Loss of Sale"] = "25";
 				$userList[0] = $userArr;
 				
 				
-				$userArr["Name"] = "John Doe";
-				$userArr["Email"] = "siam@yahoo.com";
-				$userArr["User Name"] = "cr7";
+				$userArr["Food Name"] = "Smoke Pizza";
+				$userArr["Food Type"] = "Pizza";
+				$userArr["Purchased By"] = "siam_cr7";
+				$userArr["Purchased Quantity"] = "siam_cr7";
+				$userArr["Purchase Date"] = "11/12/2016 10:48:23 AM";
+				$userArr["Profit Loss of Sale"] = "25";
 				$userList[1] = $userArr;
 				
-				$userArr["Name"] = "Amit";
-				$userArr["Email"] = "Amit@yahoo.com";
-				$userArr["User Name"] = "amt";
+				$userArr["Food Name"] = "Pasta Basata";
+				$userArr["Food Type"] = "Pasta";
+				$userArr["Purchased By"] = "siam_cr7";
+				$userArr["Purchased Quantity"] = "siam_cr7";
+				$userArr["Purchase Date"] = "11/12/2016 10:48:23 AM";
+				$userArr["Profit Loss of Sale"] = "25";
 				$userList[2] = $userArr;
 				
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
-				viewDynamicTableInHTML(true);
-				*/
+				viewDynamicTableInHTML(false);
+				
 				
 			?>
 			
+			<h1 align="center"> TOTAL PROFIT LOSS: 75 </h1>
 			<p align="center">
+				
+				From :  <input type="date"> <br>
+				To :  <input type="date"> <br>
 				Search By:
 				<select name = "searchType">
 					<option value = "nothing">select</option>
-					<option value = "name">name</option>
-					<option value = "ID">ID</option>
+					<option value = "name">food name</option>
+					<option value = "name">food type</option>
+					<option value = "ID">Purchased by</option>
 				</select>
 				<input name = "searchStr" value = ""/>
 				<input type = "submit"/><br>

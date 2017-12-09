@@ -65,6 +65,6 @@
 <b>Report</b> </br>
 <hr>
 <ul>
-	<li><a href = "showUserInfo.php" align="right">User Information</a> </br></li>
-	<li><a href = "showActivityPage.php" align="right">Activity Report</a> </br></li>
+	<li><a href = "salesReportPage.php" align="right">Show Sales Report</a> </br></li>
+	<li><a href = "staffPaymentPage.php" align="right">Show Payment Page</a> </br></li>
 </ul>

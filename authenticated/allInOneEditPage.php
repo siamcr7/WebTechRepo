@@ -42,6 +42,19 @@
 						<input name = "name" value = "XYZ"/>
 						</td>
 					</tr>
+					
+					<tr>
+						<td>Status :</td>
+						<td>
+							<select name = "status">
+								<option value = "nothing">select</option>
+								<option value = "active">Active</option>
+								<option value = "pending">Pending</option>
+								<option value = "disable">Disable</option>
+							</select>
+						</td>
+					</tr>
+					
 				</table>
 			</fieldset>
 			
