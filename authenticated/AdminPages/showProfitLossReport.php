@@ -19,7 +19,7 @@
 		</td>
 			
 		<td colspan="2" width = "500">
-			<h1>Food List</h1>
+			<h1>Profit/Loss Report</h1>
 			<?php
 				/*
 				Make the dynamic table more dynamic so that:
@@ -35,27 +35,21 @@
 				*/
 				
 				$iCnt = 0;
-				$userArr["Food ID"] = "1";
-				$userArr["Food Name"] = "Jamil Burger";
-				$userArr["Catagory ID"] = "2";
-				$userArr["Food Status"] = "active";
+				$userArr["Food Sold (TK)"] = "+2000";
+				$userArr["Employee Salary (TK)"] = "-100";
+				$userArr["Ingedients Cost (TK)"] = "-500";
+				$userArr["Other Cost"] = "-100";
 				$userList[$iCnt++] = $userArr;
 				
-				
-				$userArr["Food ID"] = "12";
-				$userArr["Food Name"] = "Pizza Burger";
-				$userArr["Catagory ID"] = "4";
-				$userArr["Food Status"] = "active";;
-				$userList[$iCnt++] = $userArr;
 
 				
 				
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
-				setNextEditPage("editFoodTable.php");
-				setNextViewPage("editFoodTable.php");
-				viewDynamicTableInHTML(true,true);
+				viewVerticalTable2Col();
 			?>
+			
+			<h2 align = "center"> Total Profit/Loss:  12359 </h2>
 			
 			<p align="center">
 				Search By:

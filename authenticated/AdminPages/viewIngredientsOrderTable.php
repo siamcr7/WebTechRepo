@@ -61,7 +61,8 @@
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
 				setNextEditPage("editIngredientsOrderTable.php");
-				viewDynamicTableInHTML(true);
+				setNextViewPage("editIngredientsOrderTable.php");
+				viewDynamicTableInHTML(true,true);
 			?>
 			
 			<p align="center">

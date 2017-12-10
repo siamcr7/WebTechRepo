@@ -19,7 +19,7 @@
 		</td>
 			
 		<td colspan="2" width = "500">
-			<h1>Order Details</h1>
+			<h1>Order Confirm Details</h1>
 			<?php
 				/*
 				Make the dynamic table more dynamic so that:
@@ -35,6 +35,7 @@
 				*/
 				
 				$iCnt = 0;
+				$userArr["Order ID"] = "12";
 				$userArr["Food Price"] = "3000";
 				$userArr["Vat"] = "200";
 				$userArr["Delivery Cost"] = "100";
@@ -44,7 +45,7 @@
 				
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
-				viewDynamicTableInHTML(false);
+				viewVerticalTable2Col();
 			?>
 			
 			<p align="center">

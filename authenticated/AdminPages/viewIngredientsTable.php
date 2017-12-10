@@ -55,7 +55,8 @@
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
 				setNextEditPage("editIngredientsTable.php");
-				viewDynamicTableInHTML(true);
+				setNextViewPage("editIngredientsTable.php");
+				viewDynamicTableInHTML(true,true);
 			?>
 			
 			<p align="center">

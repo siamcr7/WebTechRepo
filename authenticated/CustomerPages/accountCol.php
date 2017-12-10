@@ -25,6 +25,5 @@
 <b>Order Related</b> </br>
 <hr>
 <ul>
-	<li><a href = "viewPendingOrder.php" align="right">Pending Order</a> </br></li>
 	<li><a href = "viewOrderHistory.php" align="right">Order History</a> </br></li>
 </ul>

@@ -56,7 +56,7 @@
 	}
 	
 	
-	function viewDynamicTableInHTML($withEditOption) /// admin side
+	function viewDynamicTableInHTML($withEditOption,$withViewOption) /// admin side
 	{
 		if(true)
 		{
@@ -95,12 +95,21 @@
 						<td ><?=$value;?></td>
 				<?php
 					}
-					if(!$firstRow && $withEditOption)
+					if(!$firstRow)
 					{
+						if($withEditOption)
+						{
 				?>
-						<td> <a href=<?=$_SESSION["setNextEditPage"];?>>Edit</a> </td>
+						
+							<td> <a href=<?=$_SESSION["setNextEditPage"];?>>Edit</a> </td>
+				<?php
+						}
+						if($withViewOption)
+						{
+				?>	
 						<td> <a href=<?=$_SESSION["setNextViewPage"];?>>View</a> </td>
 				<?php
+						}
 					}
 				?>
 					</tr>
@@ -205,6 +214,34 @@
 				?>
 					</tr>
 			<?php
+				}
+			?>
+		
+			</table>
+			
+<?php
+		}
+	}
+	
+	function viewVerticalTable2Col()
+	{
+		if(true)
+		{
+?>
+			<table style=width:100% , border = 1>
+			
+			<?php
+				foreach($_SESSION["dynamicTable"] as $curItem)
+				{
+					foreach($curItem as $key => $value)
+					{
+				?>
+						</tr>
+							<td ><b> <?=$key;?> </b></td>
+							<td ><?=$value;?></td>
+						<tr>
+				<?php
+					}		
 				}
 			?>
 		

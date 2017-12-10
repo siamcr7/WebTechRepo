@@ -43,12 +43,28 @@
 </ul>
 
 
+<br>
+<hr>
+<b>Admin Search</b> </br>
+<hr>
+<ul>
+	<li><a href = "showSalesReportPage.php" align="right">Show Sales Report</a> </br></li>
+	<li><a href = "showSessionReportPage.php" align="right">Show Session Report</a> </br></li>
+</ul>
+
+<br>
+<hr>
+<b>Payment</b> </br>
+<hr>
+<ul>
+	<li><a href = "showPaymentReport.php" align="right">Employee Monthly Payment</a> </br></li>
+</ul>
+
 
 <br>
 <hr>
 <b>Report</b> </br>
 <hr>
 <ul>
-	<li><a href = "salesReportPage.php" align="right">Show Sales Report</a> </br></li>
-	<li><a href = "staffPaymentPage.php" align="right">Show Payment Page</a> </br></li>
+	<li><a href = "showProfitLossReport.php" align="right">Profit Loss Report</a> </br></li>
 </ul>

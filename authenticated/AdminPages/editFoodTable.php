@@ -83,6 +83,13 @@
 					</tr>
 					
 					<tr>
+						<td>Upload Food Pic:</td>
+						<td>
+						<input type = "file" />
+						</td>
+					</tr>
+					
+					<tr>
 						<td>Food Status :</td>
 						<td>
 							<select name = "status">
@@ -94,6 +101,7 @@
 					</tr>
 					
 				</table>
+				 
 				<input type = "submit"/><br>
 			</fieldset>
 			
