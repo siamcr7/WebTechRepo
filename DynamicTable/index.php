@@ -43,8 +43,19 @@
 		}
 	}
 	
+	$_SESSION["setNextEditPage"] = "editProfilePage.php";
+	$_SESSION["setNextViewPage"] = "viewProfilePage.php";
+	function setNextEditPage($str)
+	{
+		$_SESSION["setNextEditPage"] = $str;
+	}
+	function setNextViewPage($str)
+	{
+		$_SESSION["setNextViewPage"] = $str;
+	}
 	
-	function viewDynamicTableInHTML()
+	
+	function viewDynamicTableInHTML($withEditOption)
 	{
 		if(true)
 		{
@@ -66,9 +77,7 @@
 						foreach($curItem as $key => $value)
 						{
 				?>
-				
 							<th ><?=$key;?></th>
-							
 				<?php		
 						}
 				?>
@@ -83,6 +92,13 @@
 					{
 				?>
 						<td ><?=$value;?></td>
+				<?php
+					}
+					if(!$firstRow && $withEditOption)
+					{
+				?>
+						<td> <a href=<?=$_SESSION["setNextEditPage"];?>>Edit</a> </td>
+						<td> <a href=<?=$_SESSION["setNextViewPage"];?>>View</a> </td>
 				<?php
 					}
 				?>

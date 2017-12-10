@@ -19,39 +19,54 @@
 		</td>
 			
 		<td colspan="2" width = "500">
+			<h1>Sales List</h1>
 			<?php
 				/*
 				Make the dynamic table more dynamic so that:
 				we can print any colomb name as we wish by giving in the first value.
 				Also find a way to print the specific col value only. one way is to build
 				another arr and send it. For now using only the static values to show.
+				*/
 				
+				/*
 				include("../DynamicTable/index.php");
 				buildDynamicTable($_SESSION["userList"]);
 				viewDynamicTableInHTML(true);
 				*/
 				
-				$userArr["Name"] = "Jamil Siam";
-				$userArr["Email"] = "siam_cr7@yahoo.com";
-				$userArr["User Name"] = "siam_cr7";
-				$userList[0] = $userArr;
+				$iCnt = 0;
+				$userArr["Sales ID"] = "1";
+				$userArr["Csutomer Order ID"] = "1";
+				$userArr["Employee ID"] = "2";
+				$userArr["Delivery Man ID"] = "3";
+				$userList[$iCnt++] = $userArr;
 				
 				
-				$userArr["Name"] = "John Doe";
-				$userArr["Email"] = "siam@yahoo.com";
-				$userArr["User Name"] = "cr7";
-				$userList[1] = $userArr;
+				$userArr["Sales ID"] = "2";
+				$userArr["Csutomer Order ID"] = "33";
+				$userArr["Employee ID"] = "22";
+				$userArr["Delivery Man ID"] = "31";
+				$userList[$iCnt++] = $userArr;
+
 				
-				$userArr["Name"] = "Amit";
-				$userArr["Email"] = "Amit@yahoo.com";
-				$userArr["User Name"] = "amt";
-				$userList[2] = $userArr;
 				
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
+				setNextEditPage("editSalesTable.php");
 				viewDynamicTableInHTML(true);
-				
 			?>
+			
+			<p align="center">
+				Search By:
+				<select name = "searchType">
+					<option value = "nothing">select</option>
+					<option value = "Sales ID">ID</option>
+				</select>
+				<input name = "searchStr" value = ""/>
+				<input type = "submit"/><br>
+			</p>
+			
+			
 		</td>
 	</tr>
 	

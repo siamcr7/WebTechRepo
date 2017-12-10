@@ -34,6 +34,30 @@
 						<td>Password : </td>
 						<td><input name = "pass"/></td>
 					</tr>
+					
+					<tr>
+						<td>Address : </td>
+						<td><input name = "address"/></td>
+					</tr>
+					
+					<tr>
+						<td>Phone No: </td>
+						<td><input name = "phoneNo"/></td>
+					</tr>
+					
+					
+					<tr>
+						<td>Location : </td>
+						<td>
+						<select>
+							<option value = "nothing" >Select</option>
+							<option value = "dhanmondi" >Dhanmondi</option>
+							<option value = "gulshan" >Gulshan</option>
+							<option value = "banani" >Banani</option>
+						</select>
+						</td>
+					</tr>
+					
 				</table>
 				
 				<fieldset>
@@ -47,9 +71,9 @@
 					<legend>Date of Birth</legend>
 					<table style="width:100%">
 					  <tr>
-						<td align="center">dd</td>
-						<td align="center">mm</td>
-						<td align="center">yy</td>
+						<td align="center">Day</td>
+						<td align="center">Month</td>
+						<td align="center">Year</td>
 					  </tr>
 					  <tr>
 						<td align="center"><input name = "d"/></td>
