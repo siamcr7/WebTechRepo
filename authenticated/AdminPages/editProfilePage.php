@@ -1,7 +1,7 @@
 <?php
 	session_start();
 ?>
-<form action = "editProfileHandler.php"> 
+<form> <!-- action = "editProfileHandler.php" -->
 <table style="width:100%" , border = "1">
 			
 	<tr>
