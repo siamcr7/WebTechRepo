@@ -19,7 +19,7 @@
 		</td>
 			
 		<td colspan="2" width = "500">
-			<h1>Personal List</h1>
+			<h1>Catagory List</h1>
 			<?php
 				/*
 				Make the dynamic table more dynamic so that:
@@ -35,27 +35,21 @@
 				*/
 				
 				$iCnt = 0;
-				$userArr["User ID"] = "1";
-				$userArr["Full Name"] = "Jamil Siam";
-				$userArr["Email"] = "siam_cr7@yahoo.com";
-				$userArr["User Name"] = "siam_cr7";
-				$userArr["Role"] = "admin";
+				$userArr["Catagory ID"] = "1";
+				$userArr["Catagory Name"] = "Burger";
 				$userArr["Status"] = "active";
 				$userList[$iCnt++] = $userArr;
 				
 				
-				$userArr["User ID"] = "2";
-				$userArr["Full Name"] = "XYZ";
-				$userArr["Email"] = "XYZ@XYZ.com";
-				$userArr["User Name"] = "siam_cr7";
-				$userArr["Role"] = "customer";
-				$userArr["Status"] = "pending";
+				$userArr["Catagory ID"] = "2";
+				$userArr["Catagory Name"] = "Pizza";
+				$userArr["Status"] = "active";
 				$userList[$iCnt++] = $userArr;
 
 				
-				
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
+				setNextEditPage("editCatagoryTable.php");
 				viewDynamicTableInHTML(true);
 			?>
 			

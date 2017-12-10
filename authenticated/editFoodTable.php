@@ -1,3 +1,22 @@
+<script>
+	function checkVal()
+	{
+		var boxVal = document.getElementById("foodID").value;
+		//alert(boxVal);
+		if(boxVal < 0)boxVal = 0;
+		document.getElementById("foodID").value = boxVal;
+	}
+	
+	function addFoodIngredientsId()
+	{
+		var boxVal = document.getElementById("foodIngredientsId").value;
+		if(document.getElementById("foodIngredientsIdPrint").innerHTML != "")
+			document.getElementById("foodIngredientsIdPrint").innerHTML += ',';
+		document.getElementById("foodIngredientsIdPrint").innerHTML += boxVal;
+	}
+	
+</script>
+
 <?php
 	session_start();
 ?>
@@ -21,67 +40,48 @@
 		<td colspan="2" width = "500">
 			
 			<fieldset>
-				<legend><h1>Personals Edit Page</h1></legend>
+				<legend><h1>Food Items Edit Page</h1></legend>
 				<input name = "editType" type = "radio" value = "add"/>Add
 				<input name = "editType" type = "radio" value = "update"/>Update
 				
 				<table style="width:100%">
 					<tr>
-						<td>User ID :</td>
+						<td>Food ID :</td>
 						<td>
-						<input name = "ID" value = "1" type = "number"/>
+						<input id="foodID" name = "ID" value = "1" type = "number" onclick = "checkVal()"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Full Name :</td>
-						<td>
-						<input name = "name" value = "XYZ"/>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>Email :</td>
+						<td>Food Name :</td>
 						<td>
 						<input name = "name" value = "XYZ"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>UserName :</td>
+						<td>Catagory Id :</td>
 						<td>
-						<input name = "userName" value = "XYZ@XYZ.com"/>
+						<input name = "name" value = "1" type = "number"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Password :</td>
+						<td>Food Ingredients Id :</td>
 						<td>
-						<input name = "pass" value = "XYZ@XYZ.com" type = "password"/>
+							<p id = "foodIngredientsIdPrint"></p>
+							<input id = "foodIngredientsId" name = "name" value = "1" type = "number"/>
+							<input type = "button" value = "add" onclick = "addFoodIngredientsId()"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Status :</td>
+						<td>Food Status :</td>
 						<td>
 							<select name = "status">
 								<option value = "nothing">select</option>
 								<option value = "active">Active</option>
-								<option value = "pending">Pending</option>
 								<option value = "disable">Disable</option>
-							</select>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>Role :</td>
-						<td>
-							<select name = "role">
-								<option value = "nothing">select</option>
-								<option value = "admin">Admin</option>
-								<option value = "employee">Employee</option>
-								<option value = "customer">Customer</option>
-								<option value = "delevery">Delevery Man</option>
 							</select>
 						</td>
 					</tr>

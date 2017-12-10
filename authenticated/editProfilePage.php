@@ -23,7 +23,14 @@
 			<fieldset>
 				<legend>Edit Profile</legend>
 				<table style="width:100%">
-				
+					
+					<tr>
+						<td>User ID : </td>
+						<td>
+						<input name = "uN" value = "<?php echo "12";?>" readonly/>
+						</td>
+					</tr>
+					
 					<tr>
 						<td>Name :</td>
 						<td>
@@ -91,6 +98,20 @@
 									/></td>
 								 </tr>
 							</table>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Address : </td>
+						<td>
+						<input name = "uN" value = "<?php echo "H 127, B 1, Banani, Dhaka";?>"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Phone : </td>
+						<td>
+						<input name = "uN" value = "<?php echo "017675679598";?>"/>
 						</td>
 					</tr>
 					

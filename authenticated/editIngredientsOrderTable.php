@@ -21,67 +21,67 @@
 		<td colspan="2" width = "500">
 			
 			<fieldset>
-				<legend><h1>Personals Edit Page</h1></legend>
+				<legend><h1>Ingredients Order Edit Page</h1></legend>
 				<input name = "editType" type = "radio" value = "add"/>Add
 				<input name = "editType" type = "radio" value = "update"/>Update
 				
 				<table style="width:100%">
 					<tr>
-						<td>User ID :</td>
+						<td>Ingredients Order ID :</td>
 						<td>
 						<input name = "ID" value = "1" type = "number"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Full Name :</td>
+						<td>Ingredients ID :</td>
 						<td>
-						<input name = "name" value = "XYZ"/>
+						<input name = "ID" value = "1" type = "number"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Email :</td>
+						<td>Quantity To Add :</td>
 						<td>
-						<input name = "name" value = "XYZ"/>
+						<input name = "ID" value = "1" type = "number"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>UserName :</td>
+						<td>Admin ID :</td>
 						<td>
-						<input name = "userName" value = "XYZ@XYZ.com"/>
+						<input name = "ID" value = "1" type = "number"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Password :</td>
+						<td>Vendor ID :</td>
 						<td>
-						<input name = "pass" value = "XYZ@XYZ.com" type = "password"/>
+						<input name = "ID" value = "1" type = "number"/>
 						</td>
 					</tr>
 					
 					<tr>
-						<td>Status :</td>
+						<td>Order Date :</td>
+						<td>
+						<input name = "ID" type = "date"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Received Date :</td>
+						<td>
+						<input name = "ID" type = "date"/>
+						</td>
+					</tr>
+					
+					<tr>
+						<td>Order Status :</td>
 						<td>
 							<select name = "status">
 								<option value = "nothing">select</option>
-								<option value = "active">Active</option>
-								<option value = "pending">Pending</option>
-								<option value = "disable">Disable</option>
-							</select>
-						</td>
-					</tr>
-					
-					<tr>
-						<td>Role :</td>
-						<td>
-							<select name = "role">
-								<option value = "nothing">select</option>
-								<option value = "admin">Admin</option>
-								<option value = "employee">Employee</option>
-								<option value = "customer">Customer</option>
-								<option value = "delevery">Delevery Man</option>
+								<option value = "active">Ordered</option>
+								<option value = "pending">Received</option>
 							</select>
 						</td>
 					</tr>

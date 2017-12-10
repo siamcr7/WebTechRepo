@@ -43,6 +43,16 @@
 		}
 	}
 	
+	$_SESSION["setNextEditPage"] = "editProfilePage.php";
+	$_SESSION["setNextViewPage"] = "viewProfilePage.php";
+	function setNextEditPage($str)
+	{
+		$_SESSION["setNextEditPage"] = $str;
+	}
+	function setNextViewPage($str)
+	{
+		$_SESSION["setNextViewPage"] = $str;
+	}
 	
 	
 	function viewDynamicTableInHTML($withEditOption)
@@ -87,8 +97,8 @@
 					if(!$firstRow && $withEditOption)
 					{
 				?>
-						<td> <a href="editProfilePage.php">Edit</a> </td>
-						<td> <a href="viewProfilePage.php">View</a> </td>
+						<td> <a href=<?=$_SESSION["setNextEditPage"];?>>Edit</a> </td>
+						<td> <a href=<?=$_SESSION["setNextViewPage"];?>>View</a> </td>
 				<?php
 					}
 				?>

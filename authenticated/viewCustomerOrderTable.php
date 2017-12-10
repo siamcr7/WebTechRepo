@@ -19,7 +19,7 @@
 		</td>
 			
 		<td colspan="2" width = "500">
-			<h1>Personal List</h1>
+			<h1>Customer Order List</h1>
 			<?php
 				/*
 				Make the dynamic table more dynamic so that:
@@ -35,27 +35,26 @@
 				*/
 				
 				$iCnt = 0;
-				$userArr["User ID"] = "1";
-				$userArr["Full Name"] = "Jamil Siam";
-				$userArr["Email"] = "siam_cr7@yahoo.com";
-				$userArr["User Name"] = "siam_cr7";
-				$userArr["Role"] = "admin";
-				$userArr["Status"] = "active";
+				$userArr["Customer Order ID"] = "1";
+				$userArr["Customer ID"] = "1";
+				$userArr["Order Time"] = "11/11/2016 9:30AM";
+				$userArr["Receive Time"] = "11/11/2016 10:48AM";
+				$userArr["Status"] = "Delivered";
 				$userList[$iCnt++] = $userArr;
 				
 				
-				$userArr["User ID"] = "2";
-				$userArr["Full Name"] = "XYZ";
-				$userArr["Email"] = "XYZ@XYZ.com";
-				$userArr["User Name"] = "siam_cr7";
-				$userArr["Role"] = "customer";
-				$userArr["Status"] = "pending";
+				$userArr["Customer Order ID"] = "2";
+				$userArr["Customer ID"] = "1";
+				$userArr["Order Time"] = "11/11/2016 9:30AM";
+				$userArr["Receive Time"] = "";
+				$userArr["Status"] = "On the way";
 				$userList[$iCnt++] = $userArr;
 
 				
 				
 				include("../DynamicTable/index.php");
 				buildDynamicTable($userList);
+				setNextEditPage("editCustomerOrderTable.php");
 				viewDynamicTableInHTML(true);
 			?>
 			
@@ -63,7 +62,6 @@
 				Search By:
 				<select name = "searchType">
 					<option value = "nothing">select</option>
-					<option value = "name">name</option>
 					<option value = "ID">ID</option>
 				</select>
 				<input name = "searchStr" value = ""/>
