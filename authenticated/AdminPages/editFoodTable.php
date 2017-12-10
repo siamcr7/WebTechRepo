@@ -76,6 +76,13 @@
 					</tr>
 					
 					<tr>
+						<td>Food Price (TK):</td>
+						<td>
+						<input id="foodID" name = "ID" value = "1" type = "number" onclick = "checkVal()"/>
+						</td>
+					</tr>
+					
+					<tr>
 						<td>Food Status :</td>
 						<td>
 							<select name = "status">

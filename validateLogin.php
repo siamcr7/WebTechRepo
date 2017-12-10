@@ -25,7 +25,13 @@
 	if(valUserPass())
 	{
 		$_SESSION["logInHoise"] = true;
-		header("location:authenticated/dashboardPage.php");
+		
+		//Admin
+		//header("location:authenticated/AdminPages/dashboardPage.php");
+		
+		//Customer
+		header("location:authenticated/CustomerPages/dashboardPage.php");
+		
 		//echo "Successful Login";
 	}
 	else echo "User Name Pass Do not match";
