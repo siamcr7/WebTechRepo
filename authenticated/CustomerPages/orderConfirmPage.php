@@ -53,6 +53,7 @@
 					<input name = "paymentOption" type = "radio" />Bkash
 					<input name = "paymentOption" type = "radio" />Cash On Delivery
 				</fieldset>
+<<<<<<< HEAD
 				<p align="center">
 				Confirm Address:  <input value = "H 127, B 1, Banani, Dhaka" /> <br>
 				Confirm Phone Number:  <input value = "	017675679598" /> <br>
@@ -61,6 +62,12 @@
 			
 			 <h2 align = "center"> <input type = "submit" value = "Confirm Order" /> </h2>
 			
+=======
+				Confirm Address:  <input value = "H 127, B 1, Banani, Dhaka" /> <br>
+				Confirm Phone Number:  <input value = "	017675679598" /> <br>
+			</p>
+			
+>>>>>>> 1e17f25b139ea48d5a6d61e2e5e46cbd6803a2bd
 			
 		</td>
 	</tr>

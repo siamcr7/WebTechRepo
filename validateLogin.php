@@ -27,10 +27,17 @@
 		$_SESSION["logInHoise"] = true;
 		
 		//Admin
+<<<<<<< HEAD
 		//header("location:authenticated/AdminPages/dashboardPage.php");
 		
 		//Customer
 		header("location:authenticated/CustomerPages/dashboardPage.php");
+=======
+		header("location:authenticated/AdminPages/dashboardPage.php");
+		
+		//Customer
+		//header("location:authenticated/CustomerPages/dashboardPage.php");
+>>>>>>> 1e17f25b139ea48d5a6d61e2e5e46cbd6803a2bd
 		
 		//echo "Successful Login";
 	}
