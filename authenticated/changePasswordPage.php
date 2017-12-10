@@ -1,7 +1,7 @@
 <?php
 	session_start();
 ?>
-<form action = "changePasswordHandler.php"> 
+<form <!-- action = "changePasswordHandler.php" --> > 
 <table style="width:100%" , border = "1">
 			
 	<tr>
