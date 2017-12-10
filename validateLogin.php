@@ -27,10 +27,10 @@
 		$_SESSION["logInHoise"] = true;
 		
 		//Admin
-		//header("location:authenticated/AdminPages/dashboardPage.php");
+		header("location:authenticated/AdminPages/dashboardPage.php");
 		
 		//Customer
-		header("location:authenticated/CustomerPages/dashboardPage.php");
+		//header("location:authenticated/CustomerPages/dashboardPage.php");
 		
 		//echo "Successful Login";
 	}
