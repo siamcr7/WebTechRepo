@@ -1,7 +1,11 @@
 <?php
 	session_start();
 ?>
+<<<<<<< HEAD:authenticated/AdminPages/changePasswordPage.php
 <form> <!-- action = "changePasswordHandler.php" -->
+=======
+<form <!-- action = "changePasswordHandler.php" --> > 
+>>>>>>> 1ab39feb64251c0e1afe9051e7ac35a6ffe06f47:authenticated/changePasswordPage.php
 <table style="width:100%" , border = "1">
 			
 	<tr>

@@ -1,7 +1,11 @@
 <?php
 	session_start();
 ?>
+<<<<<<< HEAD:authenticated/AdminPages/editProfilePage.php
 <form> <!-- action = "editProfileHandler.php" -->
+=======
+<form <!-- action = "editProfileHandler.php" --> > 
+>>>>>>> 1ab39feb64251c0e1afe9051e7ac35a6ffe06f47:authenticated/editProfilePage.php
 <table style="width:100%" , border = "1">
 			
 	<tr>
