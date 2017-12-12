@@ -27,10 +27,13 @@
 		$_SESSION["logInHoise"] = true;
 		
 		//Admin
-		header("location:/WebTechRepo/authenticated/AdminPages/dashboardPage.php");
+		//header("location:/WebTechRepo/authenticated/AdminPages/dashboardPage.php");
 		
 		//Customer
-		//header("location:/WebTechRepo/authenticated/CustomerPages/dashboardPage.php");
+		header("location:/WebTechRepo/authenticated/CustomerPages/dashboardPage.php");
+		
+		//testFile
+		//header("location:/WebTechRepo/authenticated/test/");
 		
 		//echo "Successful Login";
 	}

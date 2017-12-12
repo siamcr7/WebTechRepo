@@ -12,7 +12,7 @@
 	</tr>
 		  
 	<tr>
-		<td colspan="1" width = "15%" valign="top">
+		<td colspan="1" width = "200" valign="top">
 			<?php
 				include($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/authenticated/AdminPages/BasicStructure/accountCol.php");
 			?>

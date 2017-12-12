@@ -1,5 +1,3 @@
-
-
 <?php
 	//session_start();
 	
@@ -124,7 +122,7 @@
 	}
 	
 	
-	function viewDynamicTableinHTMLFromCustomer()
+	function viewDynamicTableinHTMLFromCustomer($addToCart = false)
 	{
 		if(true)
 		{
@@ -132,6 +130,7 @@
 			<table style=width:100% , border = "1">
 			
 			<?php
+				$curId = 0;
 				$firstRow = true;
 				foreach($_SESSION["dynamicTable"] as $curItem)
 				{
@@ -158,6 +157,7 @@
 					<tr>
 				<?php
 					$saveFoodName = "";
+					$curId++;
 					foreach($curItem as $key => $value)
 					{
 						if($key == "Food Name")
@@ -169,17 +169,18 @@
 							}
 						}
 						
+						
 						if($key == "Picture")
 						{
 				?>
-							<td ><img src= <?=$value;?> alt="No Picture" height="250" width="250"></td>
+							<td align = "center"><img src= <?=$value;?> alt="No Picture" height="150"></td>
 				<?php
 						}
 						else if($key == "Quantity")
 						{
 				?>
 							<td>
-								<input style="width: 50" type = "number" value = <?=$value;?> />
+								<input id = "foodQuantity<?=$curId;?>" style="width: 50" type = "number" value = <?=$value;?> />
 							</td>
 				<?php
 						}
@@ -198,16 +199,13 @@
 				<?php
 						}
 					}
-					if(!$firstRow) //AWESOMENESS HAPPENED!
+					if($addToCart) //AWESOMENESS HAPPENED!
 					{
 				?>
-						<!--
-						<td>
-						<input name = <?=$saveFoodName;?> type = "button" value = "Add To Cart" onClick=
-						"addToCart(this.name)" />
-						</td>
-						-->
 						
+						<td>
+							<input id = "addToCart<?=$curId;?>" name = <?=$saveFoodName;?> type = "button" value = "Add To Cart" onClick = "addToCart(this.name,this)" />
+						</td>
 						
 				<?php
 					}

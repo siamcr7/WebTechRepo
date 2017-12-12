@@ -1,0 +1,7 @@
+1. install xampp server
+2. open xampp. start the apache server.
+3. go to htdoc and paste the WebTechRepo Folder there.
+4. go to 127.0.0.1/WebTechRepo/
+
+id: a
+pass: 1
