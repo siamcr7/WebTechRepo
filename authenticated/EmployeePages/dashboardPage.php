@@ -1,3 +1,9 @@
+<script>
+function accept() {
+    document.getElementById("pending").innerHTML = "<font face='verdana' color='green'>Accepted</font>";
+}
+</script>
+
 <?php
 	session_start();
 ?>
@@ -30,15 +36,15 @@
 			$iCnt = 0;
 			$itemAr["token"]="4";
 			$itemAr["quantity"]="2";
-			$itemAr["status"]="pending";
-			$itemAr["action"]="<input type='button' value='accept'>";
-				$userArr["Food Status"] = "active";
-				$mainList[$iCnt++] = $itemAr;
-				
-				
-				include($_SERVER['DOCUMENT_ROOT']."/WebtechRepo/authenticated/DynamicTable/index.php");
+			$itemAr["status"]="<p id='pending'>pending</p>";
+			$itemAr["action"]="<button type='button' onclick='accept()'>accept</button>";
+			$userArr["Food Status"] = "active";
+			$mainList[$iCnt++] = $itemAr;
+			
+			include($_SERVER['DOCUMENT_ROOT']."/WebtechRepo/authenticated/DynamicTable/index.php");
 				buildDynamicTable($mainList);
 				viewVerticalTable2Col();
+				
 			?>
 			
 			
