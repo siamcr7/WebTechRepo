@@ -94,16 +94,7 @@
 			
 			
 			
-			
-			<p align="center">
-				Search By:
-				<select name = "searchType">
-					<option value = "nothing">select</option>
-					<option value = "ID">ID</option>
-				</select>
-				<input name = "searchStr" value = ""/>
-				<input type = "submit"/><br>
-			</p>
+		
 			
 		</td>
 	</tr>

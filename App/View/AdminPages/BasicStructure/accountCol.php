@@ -35,17 +35,13 @@
 </ul>
 
 <br>
-<hr>
-<b>Payment</b> </br>
-<hr>
-<ul>
-	<li><a href = "/WebTechRepo/App/View/AdminPages/ShowReport/showPaymentReport.php" align="right">Employee Monthly Payment</a> </br></li>
-</ul>
+
+
 
 
 <br>
 <hr>
-<b>Report</b> </br>
+
 <b>Report</b> </br>
 <hr>
 <ul>

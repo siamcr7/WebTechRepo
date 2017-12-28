@@ -68,21 +68,10 @@
 				
 			?>
 			
-			<h1 align="center"> TOTAL PROFIT LOSS: 75 </h1>
-			<p align="center">
+			
 				
-				From :  <input type="date"> <br>
-				To :  <input type="date"> <br>
-				Search By:
-				<select name = "searchType">
-					<option value = "nothing">select</option>
-					<option value = "name">food name</option>
-					<option value = "name">food type</option>
-					<option value = "ID">Purchased by</option>
-				</select>
-				<input name = "searchStr" value = ""/>
-				<input type = "submit"/><br>
-			</p>
+				
+			
 			
 		</td>
 	</tr>

@@ -50,16 +50,7 @@
 			
 			<h2 align = "center"> Total Profit/Loss:  12359 </h2>
 			
-			<p align="center">
-				Search By:
-				<select name = "searchType">
-					<option value = "nothing">select</option>
-					<option value = "name">name</option>
-					<option value = "ID">ID</option>
-				</select>
-				<input name = "searchStr" value = ""/>
-				<input type = "submit"/><br>
-			</p>
+			
 			
 		</td>
 	</tr>
