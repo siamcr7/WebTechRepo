@@ -7,6 +7,16 @@
 		document.getElementById("foodID").value = boxVal;
 	}
 	
+	function clickMe(element)
+	{
+		var id = document.getElementById("idName").value;
+	
+		var phpDir = "";
+		phpDir += "/WebTechRepo/App/View/AdminPages/EditTables/editPersonalTable.php?id=";
+		phpDir += id;
+		document.location = phpDir;
+	}
+
 	function addFoodIngredientsId()
 	{
 		var boxVal = document.getElementById("foodIngredientsId").value;
@@ -28,6 +38,43 @@
 			?>	
 		</td>
 	</tr>
+	<?php
+		$_SESSION["ret"] = array();
+		$_SESSION["ret"]["id"] = "";
+		$_SESSION["ret"]["name"] = "";
+		$_SESSION["ret"]["catagoryId"] = "";
+		$_SESSION["ret"]["price"] = "";
+		$_SESSION["ret"]["status"] = "";
+		$_SESSION["ret"]["pic"] = "";
+		
+		if( !empty($_REQUEST["id"]) )
+		{
+			$id = $_REQUEST["id"];
+			
+			include_once($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/app/Controller/index.php");
+			
+			includeThis("database","allDBFunction.php");
+			
+			$ret = getRowByID($id,"food");
+			
+			$_SESSION["ret"] = $ret;
+		}
+		
+		if( $_SESSION["ret"] == "" || empty($_SESSION["ret"]))
+		{
+			$_SESSION["ret"] = array();
+			$_SESSION["ret"]["id"] = "";
+			$_SESSION["ret"]["name"] = "";
+			$_SESSION["ret"]["userName"] = "";
+			$_SESSION["ret"]["email"] = "";
+			$_SESSION["ret"]["address"] = "";
+			$_SESSION["ret"]["location"] = "";
+			$_SESSION["ret"]["role"] = "";
+			$_SESSION["ret"]["password"] = "";
+			$_SESSION["ret"]["status"] = "";
+		}
+	
+	?>
 		  
 	<tr>
 		<td colspan="1" width = "200" valign="top">
@@ -51,6 +98,8 @@
 						<td>
 						<input id="foodID" name = "ID"  type = "number" onclick = "checkVal()"/>
 						</td>
+						<input type = "button" value = "load" 
+						onclick = "clickMe(this)"/>
 					</tr>
 					
 					<tr>
