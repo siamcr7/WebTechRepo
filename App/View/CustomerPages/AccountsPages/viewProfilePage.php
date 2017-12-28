@@ -12,9 +12,7 @@
 		<tr>
 			<td>User ID : </td>
 			<td>
-			<?php
-			echo "12";
-			?>
+				<?=$_SESSION["curUser"]["id"]?>
 			</td>
 		</tr>
 		
@@ -22,9 +20,7 @@
 		<tr>
 			<td>Name : </td>
 			<td>
-			<?php
-			echo $_SESSION["curUser"]["name"];
-			?>
+				<?=$_SESSION["curUser"]["name"]?>
 			</td>
 		</tr>
 		
@@ -32,47 +28,35 @@
 		<tr>
 			<td>Email : </td>
 			<td>
-			<?php
-			echo $_SESSION["curUser"]["email"];
-			?>
+				<?=$_SESSION["curUser"]["email"]?>
 			</td>
 		</tr>
 		
 		<tr>
 			<td>User Name : </td>
 			<td>
-			<?php
-			echo $_SESSION["curUser"]["uN"];
-			?>
-			</td>
-		</tr>
-		
-		<!--
-		<tr>
-			<td>Password : </td>
-			<td>
-			<?php
-			//echo $_SESSION["curUser"]["pass"];
-			?>
-			</td>
-		</tr>
-		--->
-		
-		<tr>
-			<td>Gender : </td>
-			<td>
-			<?php
-			echo $_SESSION["curUser"]["gender"];
-			?>
+				<?=$_SESSION["curUser"]["userName"]?>
 			</td>
 		</tr>
 		
 		<tr>
-			<td>Date of Birth : </td>
+			<td>Address : </td>
 			<td>
-			<?php
-			echo $_SESSION["curUser"]["DOB"]." (24 years 11 months 2 days old)";
-			?>
+				<?=$_SESSION["curUser"]["address"]?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>Location : </td>
+			<td>
+				<?=$_SESSION["curUser"]["location"]?>
+			</td>
+		</tr>
+		
+		<tr>
+			<td>Phone No : </td>
+			<td>
+				<?=$_SESSION["curUser"]["phoneNo"]?>
 			</td>
 		</tr>
 		
@@ -80,29 +64,15 @@
 			<td>User Since : </td>
 			<td>
 			<?php
-			echo "2 years 1 months 12 days";
+				date_default_timezone_set("Asia/Dhaka");
+				$curTime =  (string) date('Y-m-d h:i:s', time());
+				$datetime1 = date_create_from_format('Y-m-d h:i:s',$_SESSION["curUser"]["regDate"]);
+				$datetime2 = date_create_from_format('Y-m-d h:i:s',$curTime);
+				$interval = $datetime1->diff($datetime2);
+				echo $interval->format('%Y Years %M Months %D Days %H Hours %I Minutes %S Seconds');
 			?>
 			</td>
 		</tr>
-		
-		<tr>
-			<td>Address : </td>
-			<td>
-			<?php
-			echo "H 127, B 1, Banani, Dhaka";
-			?>
-			</td>
-		</tr>
-		
-		<tr>
-			<td>Phone No : </td>
-			<td>
-			<?php
-			echo "017675679598";
-			?>
-			</td>
-		</tr>
-		
 		
 	</table>
 	<a href = "<?=hrefThis("customer","AccountsPages/editProfilePage.php")?>" align="right">Edit Profile</a>

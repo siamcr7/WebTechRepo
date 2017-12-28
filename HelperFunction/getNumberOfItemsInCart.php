@@ -1,23 +1,6 @@
 <?php
 	include_once($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/app/Controller/index.php");
 ?>
-<?php
-	includeThis("customer","BasicStructure/loadUpper.php");
-?>
-
-			<h1>Welcome
-			<?php
-				echo $_SESSION["curUser"]["name"];
-			?>!
-			<br>
-			</h1>
-			
-			
-			<h1>	
-				YOU HAVE 
-				<?php
-	include_once($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/app/Controller/index.php");
-?>
 
 <?php
 	if(session_id() == "")session_start();
@@ -42,16 +25,3 @@
 	
 	
 ?>
-				ITEMS PENDING! <br>
-				<a href = "<?=hrefThis("customer","OrderPages/viewCartPage.php")?>" align="right">View Cart</a>
-			</h1>
-			
-			
-		</td>
-	</tr>
-	
-<?php
-	includeThis("customer","BasicStructure/loadLower.php");
-?>
-
-

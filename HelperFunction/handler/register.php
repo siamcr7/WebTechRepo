@@ -1,165 +1,91 @@
 <?php
+	include_once($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/app/Controller/index.php");
+?>
+<?php
 	session_start();
-	///now in file system -> first store all xml info from fileDB to session userList
-	include ($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/FileDB/fileDBFunction.php");
-	loadInfoInSessionUserList();
-
-	function chkName() /// validates correct name
+	includeThis("database","allDBFunction.php");
+	includeThis("handler","allHandlerFunction.php");
+	function loadUserListInSession()
 	{
-		$s = $_REQUEST['name'];
-		if(strlen($s) == 0)return false;
-		if($s[0] >= 'A' && $s[0] <= 'Z'){}
-		else if($s[0] >= 'a' && $s[0] <= 'z'){}
-		else return false;
-		for($i=1;$i<strlen($s);$i++)
-		{
-			if($s[$i] >= 'A' && $s[$i] <= 'Z'){}
-			else if($s[$i] >= 'a' && $s[$i] <= 'z'){}
-			else return false;
-		}
-		if((str_word_count($s)) < 2)return false;
-		return true;
-	}
-	
-	function chkEmail() /// validates correct email
-	{
-		$s = $_REQUEST['email'];
-		if(strlen($s) == 0)return false;
-		$atAse = false;
-		$dotAse = false;
-		for($i=0;$i<strlen($s);$i++)
-		{
-			if($s[$i] == ' ')return false;
-			if($s[$i] == '@')
-			{
-				if($atAse || $dotAse)return false;
-				$atAse = true;
-				if($s[$i+1] == '.')return false;
-			}
-			if($s[$i] == '.' && $atAse)$dotAse = true;
-		}
-		if($dotAse && $atAse)return true;
-		return false;
-	}
-	
-	function chkDuplicateEmail()/// check for duplicate email
-	{
-		if(empty($_SESSION["userList"]))return true;
-		foreach($_SESSION["userList"] as $curUser)
-		{
-			if(empty($curUser["email"]))return true;
-			if($curUser["email"] == $_REQUEST['email'])return false;
-		}
-		return true;
-	}
-	
-	
-	function chkUserName() /// validates correct username
-	{
-		$s = $_REQUEST['userName'];
-		if(strlen($s) < 2)return false;
-		
-		for($i=0;$i<strlen($s);$i++)
-		{
-			if($s[$i] >= 'A' && $s[$i] <= 'Z'){}
-			else if($s[$i] >= '0' && $s[$i] <= '9'){}
-			else if($s[$i] >= 'a' && $s[$i] <= 'z'){}
-			else if($s[$i] == '.' || $s[$i] == '-' || $s[$i] == '_'){}
-			else return false;
-		}
-		return true;
-	}
-	
-	function chkDuplicateUserName()/// check for duplicate user name
-	{
-		if(empty($_SESSION["userList"]))return true;
-		foreach($_SESSION["userList"] as $curUser)
-		{
-			if(empty($curUser["userName"]))return true;
-			if($curUser["userName"] == $_REQUEST['userName'])return false;
-		}
-		return true;
-	}
-	
-	$splChar = array("@","#","$","%");
-	function chkPass() /// validates correct password
-	{
-		$s = $_REQUEST['password'];
-		global $splChar;
-		if(strlen($s) < 8)return false;
-		for($i=0;$i<strlen($s);$i++)
-		{
-			for($j=0;$j<4;$j++)
-			{
-				if($s[$i] == $splChar[$j])return true;
-			}
-		}
-		return false;
-	}
-	
-	function allNumber($s) /// checks if all number
-	{
-		for($i=0;$i<strlen($s);$i++)
-		{
-			if($s[$i] >= '0' && $s[$i] <= '9'){}
-			else return false;
-		}
-		return true;
-	}
-	
-	function chkPhoneNo()
-	{
-		$s = $_REQUEST['phoneNo'];
-		if(strlen($s) != 11)return false;
-		if(!allNumber($s))return false;
+		unset($_SESSION["userList"]);
+		$_SESSION["userList"] = getFullTable("user");
 	}
 	
 	function valAll() /// validates all
 	{
 		$ok = true;
 		$msg = "";
+		
+		unset($_SESSION["msg"]);
+		$_SESSION["msg"]["name"] = "";
 		if(!chkName())
 		{
-			$msg .= "Invalid Name. name can contain alpha numeric characters and must start with alphabets and have at least 2 words. \n";
+			$msg = "Invalid Name. name can contain alpha numeric characters and must start with alphabets and have at least 2 words.";
+			$_SESSION["msg"]["name"] .= $msg;
 			$ok = false;
 		}
+		
+		$_SESSION["msg"]["email"] = "";
 		if(!chkEmail())
 		{
-			$msg .= "Invalid Email. Ex: abc@abc.com\n";
+			$msg = "Invalid Email. Ex: abc@abc.com .";
+			$_SESSION["msg"]["email"] .= $msg;
 			$ok = false;
 		}	
 		if(!chkDuplicateEmail())
 		{
-			$msg .= "Email Already Taken.\n";
+			$msg = "Email Already Taken.";
+			$_SESSION["msg"]["email"] .= $msg;
 			$ok = false;
 		}
+		
+		$_SESSION["msg"]["userName"] = "";
 		if(!chkUserName())
 		{
-			$msg .= "Invalid User Name. UserName can only contain alpha numeric character and the following characters: [ _ , - , . ] \n";
+			$msg = "Invalid User Name. UserName can only contain alpha numeric character and the following characters: [ _  -  . ] and must contain at least 2 letters.";
+			$_SESSION["msg"]["userName"] .= $msg;
 			$ok = false;
 		}
 		if(!chkDuplicateUserName())
 		{
-			$msg .= "User Name Already Taken.\n";
+			$msg = "User Name Already Taken.";
+			$_SESSION["msg"]["userName"] .= $msg;
 			$ok = false;
 		}
 		
+		$_SESSION["msg"]["password"] = "";
 		if(!chkPass())
 		{
-			$msg .= "Invalid Password. Password can only contain alpha numeric character and must have any of [@,#,$,%] and have at least size of 8 characters \n";
+			$msg = "Invalid Password. Password can only contain alpha numeric character and must have any of [@ # $ %] and have at least size of 8 characters.";
+			$_SESSION["msg"]["password"] .= $msg;
 			$ok = false;
 		}
 		
+		$_SESSION["msg"]["phoneNo"] = "";
 		if(!chkPhoneNo())
 		{
-			$msg .= "Invalid Phone Number of Bangladesh. \n";
+			$msg = "Invalid Phone Number of Bangladesh.";
+			$_SESSION["msg"]["phoneNo"] .= $msg;
 			$ok = false;
 		}
-
-
-		//if($ok)echo "Registraion Completed.";
-		if($msg == "")$msg = "Registration Successful!\n";
-		return $msg;
+		
+		$_SESSION["msg"]["location"] = "";
+		if(!chkLocation())
+		{
+			$msg = "Select Location.";
+			$_SESSION["msg"]["location"] .= $msg;
+			$ok = false;
+		}
+		
+		$_SESSION["msg"]["address"] = "";
+		if(!chkAddress())
+		{
+			$msg = "Address Can not be empty.";
+			$_SESSION["msg"]["address"] .= $msg;
+			$ok = false;
+		}
+		
+		return $ok;
 	}
 	
 	function seeSession()
@@ -176,37 +102,51 @@
 		}
 	}
 	
-	$msg = valAll();
-	echo 
-	"
-		<script>
-			alert("aaa");
-		</script>
-	";
 	
-	
-	if(valAll() != "" && 1 == 2) /// check validity
+	loadUserListInSession();
+	if(valAll()) /// check validity
 	{
-		$user["name"] =  $_REQUEST['name'];
-		$user["email"] = $_REQUEST['email'];
-		$user["userName"] = $_REQUEST['userName'];
-		$user["password"] = $_REQUEST['password'];
-		$user["gender"] = $_REQUEST['gender'];
-		$user["DOB"] = $_REQUEST['d']."/".$_REQUEST['m']."/".$_REQUEST['y'];
-		date_default_timezone_set("Asia/Dhaka");$date = date('d/m/Y h:i:s a', time());
-		$user["timeOfReg"] = $date;
+		$user["name"] =  "'".$_REQUEST['name']."'";
+		$user["userName"] = "'".$_REQUEST['userName']."'";
+		$user["email"] = "'".$_REQUEST['email']."'";
+		$user["address"] = "'".$_REQUEST['address']."'";
+		$user["location"] = "'".$_REQUEST['location']."'";
+		$user["role"] = "'"."customer"."'";
+		$user["password"] = "'".$_REQUEST['password']."'";
+		$user["status"] = "'"."active"."'";
 		
-		$idx = 0;
-		if(!empty($_SESSION["userList"]))$idx = count($_SESSION["userList"]);
-		$_SESSION["userList"][$idx] = $user; 
-		echo "Registraion Completed.<br>";
+		date_default_timezone_set("Asia/Dhaka");
+		$date = date('Y-m-d h:i:s', time());
+		$user["regDate"] = "'".$date."'";
+		$user["phoneNo"] = "'".$_REQUEST['phoneNo']."'";
 		
-		/// write the new session_userList in fileDB
-		writeSessionUserListInFileDB(getcwd()."\\FileDB\\");
+		
+		$res = insert($user,"user");
+
+		if($res == true)
+		{
+			$go = hrefThis("public","registerPage.php");
+			echo"<script>
+                alert('Registration Successful!');
+				document.location='{$go}';
+            </script>";
+		}
+		else
+		{
+			$go = hrefThis("public","registerPage.php");
+			echo"<script>
+                alert('Error Occurred! Try Again!');
+				document.location='{$go}';				
+            </script>";
+		}
+		
+	}
+	else
+	{
+		header("location:".hrefThis("public","registerPage.php?msg=ase"));
 	}
 	
 	//echo "<br> All User: <br>";
 	//seeSession();
-	
-	//echo "YOLO";
+
 ?>

@@ -5,48 +5,30 @@
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
 			
-			<h1>Order History</h1>
-			<?php
-				/*
-				Make the dynamic table more dynamic so that:
-				we can print any colomb name as we wish by giving in the first value.
-				Also find a way to print the specific col value only. one way is to build
-				another arr and send it. For now using only the static values to show.
-				*/
-				
-				/*
-				include("../DynamicTable/index.php");
-				buildDynamicTable($_SESSION["userList"]);
-				viewDynamicTableInHTML(true);
-				*/
-				
-				$iCnt = 0;
-				$userArr["Customer Order ID"] = "1";
-				$userArr["Order Time"] = "11/11/2016 9:30AM";
-				$userArr["Receive Time"] = "11/11/2016 10:48AM";
-				$userArr["Status"] = "Delivered";
-				$userList[$iCnt++] = $userArr;
-				
-				
-				$userArr["Customer Order ID"] = "2";
-				$userArr["Order Time"] = "11/11/2016 9:30AM";
-				$userArr["Receive Time"] = "";
-				$userArr["Status"] = "On the way";
-				$userList[$iCnt++] = $userArr;
-				
-				$userArr["Customer Order ID"] = "2";
-				$userArr["Order Time"] = "11/11/2016 9:30AM";
-				$userArr["Receive Time"] = "";
-				$userArr["Status"] = "Ordered";
-				$userList[$iCnt++] = $userArr;
-
-				
-				
-				includeThis("dynamicTable","index.php");
-				buildDynamicTable($userList);
-				setNextViewPage( hrefThis("customer","OrderPages/viewOrderDetails.php") );
-				viewDynamicTableInHTML(false,true);
-			?>
+	<h1>Order History</h1>
+	<?php
+		if(session_id() == "")session_start();
+		includeThis("database","allDBFunction.php");
+		
+		$userList = array();
+		$userList = getArrayOfInfo("customerId",$_SESSION["curUser"]["id"],"customer_order");
+		
+		$ret = array();
+		for($i=0;$i<count($userList);$i++)
+		{
+			$ret[$i]["Order ID"] = $userList[$i]["id"];
+			$ret[$i]["Order Time"] = $userList[$i]["orderTime"];
+			$ret[$i]["Receive Time"] = $userList[$i]["receiveTime"];
+			$ret[$i]["Order Status"] = $userList[$i]["status"];
+			$ret[$i]["Payment Method"] = $userList[$i]["paymentMethod"];
+			$ret[$i]["View Details"] = hrefThis("customer","OrderPages/viewOrderDetails.php?customerOrderId=").$userList[$i]["id"];
+		}
+		
+		
+		includeThis("dynamicTable","index.php");
+		buildDynamicTable($ret);
+		viewDynamicTableinHTMLFromCustomer();
+	?>
 			
 <?php
 	includeThis("customer","BasicStructure/loadLower.php");

@@ -3,20 +3,22 @@
 ?>
 <?php
 	session_start();
-	//session_destroy();
 	
-	///now in file system -> first store all xml info from fileDB to session userList
-	include($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/FileDB/fileDBFunction.php");
-	loadInfoInSessionUserList();
+	includeThis("database","allDBFunction.php");
+	function loadUserListInSession()
+	{
+		unset($_SESSION["userList"]);
+		$_SESSION["userList"] = getFullTable("user");
+	}
 	
 	function valUserPass()
 	{
 		if(empty($_SESSION["userList"]))return false;
 		foreach($_SESSION["userList"] as $curUser)
 		{
-			if(empty($curUser["uN"]))return false;
-			if(empty($curUser["pass"]))return false;
-			if($curUser["uN"] == $_REQUEST['uN'] && $curUser["pass"] == $_REQUEST['pass'])
+			if(empty($curUser["userName"]))return false;
+			if(empty($curUser["password"]))return false;
+			if($curUser["userName"] == $_REQUEST['userName'] && $curUser["password"] == $_REQUEST['password'])
 			{
 				$_SESSION["curUser"] = $curUser;
 				return true;
@@ -25,6 +27,7 @@
 		return false;
 	}
 	
+	loadUserListInSession();
 	if(valUserPass())
 	{
 		$_SESSION["logInHoise"] = true;
@@ -33,14 +36,54 @@
 		//header("location:/WebTechRepo/authenticated/AdminPages/dashboardPage.php");
 		
 		//Customer
-		header("location:".hrefThis("customer","dashboardPage.php"));
 		
-		//testFile
-		//header("location:/WebTechRepo/authenticated/test/");
+		if($_SESSION["curUser"]["role"] == "customer")
+		{
+			if( !empty($_REQUEST["rememberMe"]) && $_REQUEST["rememberMe"] == "on") /// create cookie
+			{
+				$cookie_name = "userName";
+				$cookie_value = $_SESSION["curUser"]["userName"];
+				setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+				
+				$cookie_name = "password";
+				$cookie_value = $_SESSION["curUser"]["password"];
+				setcookie($cookie_name, $cookie_value, time() + (86400 * 30), "/"); // 86400 = 1 day
+			}
+			
+			$go = hrefThis("customer","dashboardPage.php");
+			$name = $_SESSION["curUser"]["name"];
+			echo"<script>
+                alert('Logging in as {$name}');   
+				document.location='{$go}';
+            </script>";
+		}
+		else if($_SESSION["curUser"]["role"] == "admin")
+		{
+			$go = "/WebTechRepo/App/View/AdminPages/dashboardPage.php";
+			$name = $_SESSION["curUser"]["name"];
+			echo"<script>
+                alert('Logging in as {$name}');   
+				document.location='{$go}';
+            </script>";
+		}
+		else
+		{
+			$go = hrefThis("public","loginPage.php");
+			echo"<script>
+                alert('Something went wrong! Try again!');
+				document.location='{$go}';	
+            </script>";
+		}
 		
-		//echo "Successful Login";
 	}
-	else echo "User Name Pass Do not match";
+	else
+	{
+		$go = hrefThis("public","loginPage.php");
+		echo"<script>
+                alert('User Name Pass Do not match!');
+				document.location='{$go}';				
+            </script>";
+	}		
 	
 	//echo "YOLO";
 ?>

@@ -16,7 +16,7 @@
 <hr>
 <ul>
 	<li><a href = "<?=hrefThis("customer","OrderPages/viewFullMenu.php")?>" align="right">View Menu!</a> </br></li>
-	<li><a href = "<?=hrefThis("customer","OrderPages/viewCartPage.php")?>" align="right">View Cart</a> </br></li>
+	<li><a href = "<?=hrefThis("customer","OrderPages/viewCartPage.php")?>" align="right">View Cart(<?=includeThis("helper","getNumberOfItemsInCart.php");?>)</a> </br></li>
 </ul>
 
 

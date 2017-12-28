@@ -4,7 +4,7 @@
 <?php
 	includeThis("public","BasicStructure/loadUpper.php");
 ?>
-			<h1 align="left">Welcome to company name</h1>
+			<h1 align="left">Welcome to Mentos Food and Co.</h1>
 			
 <?php
 	includeThis("public","BasicStructure/loadLower.php");

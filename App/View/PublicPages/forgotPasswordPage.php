@@ -9,7 +9,7 @@
 		<legend>Forgot Password</legend>
 		
 		Enter User Name:  
-		<input name = "uN"/> <br>
+		<input name = "userName"/> <br>
 		<hr>
 		
 		<br>
