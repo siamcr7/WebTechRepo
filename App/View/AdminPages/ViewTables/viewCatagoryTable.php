@@ -76,12 +76,9 @@
 			<td><?php echo $row['id'];?></td>
 			<td><?php echo $row['name'];?></td>
 			
-			<td>
-				<a href="#">Edit</a>
-			</td>
 
 			<td>
-				<a href="#">Delete</a>
+				<a href="deleteCatagoryTable.php?del=<?php echo $row['id'];?>">Delete</a>
 			</td>
 		</tr>
 		<?php }?>

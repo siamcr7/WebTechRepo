@@ -80,11 +80,7 @@
 			<td><?php echo $row['deliveryman_id'];?></td>
 			
 			<td>
-				<a href="#">Edit</a>
-			</td>
-
-			<td>
-				<a href="#">Delete</a>
+				<a href="deleteSalesTable.php?del=<?php echo $row['id'];?>">Delete</a>
 			</td>
 		</tr>
 		<?php }?>
