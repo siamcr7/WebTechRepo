@@ -3,6 +3,6 @@
 	if(!empty($_SESSION["logInHoise"]))
 	{
 		$_SESSION["logInHoise"] = false;
-		header("location:/WebTechRepo/PublicPages/loginPage.php");
+		header("location:/WebTechRepo/App/View/PublicPages/loginPage.php");
 	}
 ?>
