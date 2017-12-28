@@ -5,7 +5,7 @@
 	includeThis("public","BasicStructure/loadUpper.php");
 ?>
 
-<form action = "<?=hrefThis("handler","register.php");?>" >
+<form method = "POST" action = "<?=hrefThis("handler","register.php");?>" >
 	<fieldset>
 		<legend>Registration</legend>
 		

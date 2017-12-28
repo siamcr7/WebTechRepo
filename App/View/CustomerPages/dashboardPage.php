@@ -5,8 +5,18 @@
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
 
-			<h1>Welcome
+			<h1>
 			<?php
+				date_default_timezone_set("Asia/Dhaka");
+				$curTime =  date('h:i:s a', time());
+				$d1 = new DateTime('01:00:00 pm');
+				$d2 = new DateTime($curTime);
+				
+				if($d2 >= $d1)echo "Good After-noon, ";
+				else echo "Good Morning, ";
+				
+				
+				
 				echo $_SESSION["curUser"]["name"];
 			?>!
 			<br>

@@ -12,6 +12,9 @@
 	{
 		$arr = array();
 		$arr["status"] = "ordered";
+		date_default_timezone_set("Asia/Dhaka");
+		$date = date('Y-m-d h:i:s', time());
+		$arr["orderTime"] = $date;
 		$arr["paymentMethod"] = $_REQUEST["paymentMethod"];
 		
 		$res = update($arr,"customer_order",$customerOrderId);

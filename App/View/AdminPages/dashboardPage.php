@@ -23,7 +23,7 @@
 			<h1>Welcome
 			<?php
 				echo $_SESSION["curUser"]["name"];
-			?> Months 10 Days 5 Hours 11 Minutes 24 Seconds Ago! <br>
+			?> <br>
 			
 		</td>
 	</tr>

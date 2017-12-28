@@ -5,7 +5,7 @@
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
 
-<form action = "<?=hrefThis("handler","changePassword.php");?>" >
+<form method = "POST" action = "<?=hrefThis("handler","changePassword.php");?>" >
 	<fieldset>
 		<legend>Change Password</legend>
 		<table style="width:100%" >

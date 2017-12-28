@@ -23,7 +23,7 @@
 	}
 ?>
 
-<form action = "<?=hrefThis("handler","updateRating.php")?>" >
+<form method = "POST" action = "<?=hrefThis("handler","updateRating.php")?>" >
 	<div align = "center">
 		<img src= <?=$imgLoc."{$foodId}.png";?> alt="No Picture" height="150"><br>
 		<h1><?=$name?></h1> <br>

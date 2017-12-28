@@ -16,7 +16,7 @@
 	}
 ?>
 
-<form action = "<?=hrefThis("handler","login.php");?>" >
+<form method = "POST" action = "<?=hrefThis("handler","login.php");?>" >
 	<fieldset>
 		<legend>LOGIN</legend>
 		

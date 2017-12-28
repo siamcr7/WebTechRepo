@@ -4,7 +4,7 @@
 <?php
 	includeThis("public","BasicStructure/loadUpper.php");
 ?>
-<form action = "<?=hrefThis("handler","forgotPassword.php");?>" >
+<form method = "POST" action = "<?=hrefThis("handler","forgotPassword.php");?>" >
 	<fieldset>
 		<legend>Forgot Password</legend>
 		

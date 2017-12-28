@@ -4,7 +4,7 @@
 <?php
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
-<form action = "<?=hrefThis("handler","confirmOrder.php")?>">
+<form method = "POST" action = "<?=hrefThis("handler","confirmOrder.php")?>">
 	<h1>Order Confirm Details</h1>
 	<?php
 		if(session_id() == "")session_start();

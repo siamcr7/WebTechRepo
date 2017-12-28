@@ -67,19 +67,22 @@
 		return true;
 	}
 	
-	$splChar = array("@","#","$","%");
+	
 	function chkPass() /// validates correct password
 	{
 		if(empty($_REQUEST['password']))return false;
 		$s = $_REQUEST['password'];
-		global $splChar;
+		$splChar = array('@','#','$','%');
+		
 		if(strlen($s) < 8)return false;
+		
 		for($i=0;$i<strlen($s);$i++)
 		{
 			for($j=0;$j<4;$j++)
 			{
 				if($s[$i] == $splChar[$j])return true;
 			}
+			
 		}
 		return false;
 	}

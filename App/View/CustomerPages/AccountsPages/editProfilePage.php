@@ -5,7 +5,7 @@
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
 
-<form action = "<?=hrefThis("handler","editProfile.php");?>" >
+<form method = "POST" action = "<?=hrefThis("handler","editProfile.php");?>" >
 	<fieldset>
 		<legend>Edit Profile</legend>
 		<table style="width:100%">

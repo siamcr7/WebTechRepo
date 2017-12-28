@@ -70,10 +70,16 @@
 	}
 	
 	/// rating
+	
+	
+	
 	if($ratingLow != "" && $ratingHigh != "")
 	{
 		$ratingLow = (float)$ratingLow;
 		$ratingHigh = (float)$ratingHigh;
+		
+		
+		
 		
 		$tempRes = array();$iCnt = 0;
 		for($i=0;$i<count($food);$i++)
@@ -81,7 +87,10 @@
 			$curRating = (float)calCAvgRating($food[$i]["id"]);
 			
 			if($curRating >= $ratingLow && $curRating <= $ratingHigh)
+			{
 				$tempRes[$iCnt++] = $food[$i];
+			}
+				
 		}
 		$food = array();$food = $tempRes;
 	}

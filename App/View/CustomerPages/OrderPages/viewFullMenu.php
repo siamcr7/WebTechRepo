@@ -24,7 +24,7 @@
 	
 	<hr>
 	
-<form action = "<?=hrefThis("handler","searchFood.php");?>" >
+<form method = "POST" action = "<?=hrefThis("handler","searchFood.php");?>" >
 	<p align="center">
 		Food Name: <input name = "searchByName" value = "" style="width: 50"/>
 		| 
@@ -64,7 +64,7 @@
 		-
 		<input name = "searchByRatingHigh" value = "5" style="width: 50"/>
 		|
-		<input type = "checkbox"/> Only Offers! |
+		
 		<input type = "submit"/>
 		
 		<br>
@@ -78,7 +78,7 @@
 		$foodTable = array();
 		$foodTable = getFullTable("food");
 		
-		if(!empty($_SESSION["searchResult"]))
+		if(isset($_SESSION["searchResult"]))
 		{
 			$foodTable = $_SESSION["searchResult"];
 			unset($_SESSION["searchResult"]);
