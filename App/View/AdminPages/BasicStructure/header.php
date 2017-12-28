@@ -1,5 +1,5 @@
 <?php
-	//include($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/App/View/AdminPages/Auth/authorization.php");
+	include($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/App/View/AdminPages/Auth/authorization.php");
 ?>
 <html>
 	<h1 align="center">Admin Panel</h1>
