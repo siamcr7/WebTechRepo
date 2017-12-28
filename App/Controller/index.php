@@ -13,7 +13,7 @@
 	//********EDIT STARTS
 	
 	/// define the roots of all the folders
-	$roots["public"] = "/WebTechRepo/PublicPages/";
+	$roots["public"] = "/WebTechRepo/App/View/PublicPages/";
 	$roots["customer"] = "/WebTechRepo/App/View/CustomerPages/";
 
 	$roots["resource"] = "/WebTechRepo/Resources/";
@@ -29,16 +29,16 @@
 		
 	
 	/// include all the controller files
-	include("CustomerController.php");
-	include("PublicController.php");
-	include("DynamicTableController.php");
+	include_once("CustomerController.php");
+	include_once("PublicController.php");
+	include_once("DynamicTableController.php");
 	
-	include("ResourceController.php");
+	include_once("ResourceController.php");
 	
-	include("helperController.php");
-	include("handlerController.php");
+	include_once("helperController.php");
+	include_once("handlerController.php");
 	
-	include("dbController.php");
+	include_once("dbController.php");
 	
 	//*******EDIT ENDS
 	

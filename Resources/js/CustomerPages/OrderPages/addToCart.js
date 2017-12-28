@@ -1,3 +1,19 @@
+function ajaxCall(phpDir,requestVar,requestVal) // ajax call funtion
+{
+	var req = new XMLHttpRequest();
+	req.open("GET",phpDir+"?"+requestVar+"="+requestVal,false);
+	req.send();
+	return req.responseText;
+}
+
+function ajaxCall2(phpDir) // ajax call funtion
+{
+	var req = new XMLHttpRequest();
+	req.open("GET",phpDir,false);
+	req.send();
+	return req.responseText;
+}
+
 // adding to cart
 var viewCartArr = []; // food names
 var viewCartArrCount = []; // count of the foods
@@ -14,6 +30,7 @@ function tempViewCart()
 		str += "\n";
 	}
 	//alert(str);
+	// to show the details uncomment below line
 	document.getElementById("cartDetails").innerText = str;
 	//document.cookie = "saveCart = str";
 }
@@ -41,6 +58,24 @@ function getValue(element,type)// given an element and type, find the value of t
 	return (document.getElementById(type+curID).value);
 }
 
+function callToPhp(foodId,foodQ)// this updates the customer_order_food table
+{
+	var phpDir = "/WebTechRepo/HelperFunction/addToCart.php";
+	phpDir += "?";
+	phpDir += ("foodId="+foodId);
+	phpDir += "&";
+	phpDir += ("quantity="+foodQ);
+	var response = (ajaxCall2(phpDir));
+	//alert(response);
+}
+
+function getTotalItemInCart()
+{
+	var phpDir = "/WebTechRepo/HelperFunction/getNumberOfItemsInCart.php";
+	var response = (ajaxCall2(phpDir));
+	return parseInt(response);
+}
+
 function addToCart(foodItem,element)
 {
 	var tempFoodItem = foodItem[0];
@@ -55,6 +90,7 @@ function addToCart(foodItem,element)
 	if(foodQuantity < 0)foodQuantity = 0;
 	else if(foodQuantity == 0)foodQuantity = 1;
 	
+	callToPhp(getID(element) , foodQuantity);
 	
 	var len = viewCartArr.length;
 	var found = false;
@@ -80,5 +116,9 @@ function addToCart(foodItem,element)
 	
 	tempViewCart();
 	if(totOrder > 0)document.getElementById("viewCartSpan").style.display = "block";
+	
+	totOrder = getTotalItemInCart();
+	//alert(totOrder);
+	
 	document.getElementById("viewCart").innerText = "View Cart(" + totOrder + ")";
 }

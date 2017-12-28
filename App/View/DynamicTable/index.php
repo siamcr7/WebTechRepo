@@ -174,22 +174,36 @@
 						else if($key == "Picture")
 						{
 				?>
-							<td align = "center"><img src= <?=$value;?> alt="No Picture" height="150"></td>
+							<td align = "center"><img id="foodImg<?=$curId;?>" src= <?=$value;?> alt="No Picture" height="150" onclick = "headerImgClick('food',this)" ></td>
 				<?php
 						}
 						else if($key == "Quantity")
 						{
 				?>
 							<td>
-								<input id = "foodQuantity<?=$curId;?>" style="width: 50" type = "number" value = <?=$value;?> />
+								<input id = "foodQuantity<?=$curId;?>" style="width: 50" type = "number" min="0" value = <?=$value;?> onkeyup = "quantityChanged(this)" onclick = "quantityChanged(this)"/>
 							</td>
 				<?php
 						}
-						else if($key == "Select")
+						else if($key == "Check")
 						{
 				?>
 							<td>
-								<input name = "name" type = "checkbox" <?=$value;?> />
+								<input id = "foodCheck<?=$curId;?>" name = "name" type = "checkbox" <?=$value;?> />
+							</td>
+				<?php
+						}
+						else if($key == "Price (TK)")
+						{
+				?>
+							<td id = "foodPrice<?=$curId;?>"><?=$value;?></td>
+				<?php
+						}
+						else if($key == "View Details")
+						{
+				?>
+							<td>
+								<a href="<?=$value;?>"> View </a>
 							</td>
 				<?php
 						}

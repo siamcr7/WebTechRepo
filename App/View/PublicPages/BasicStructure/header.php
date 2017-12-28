@@ -1,5 +1,5 @@
 <html>
-	<h1 align="left">Company Name</h1>
+	<h1 align="left">Mentos Food and Co.</h1>
 	<p align="right"><a href = "<?=hrefThis("public","index.php")?>" >Home</a>
 	 | 
 	<a href = "<?=hrefThis("public","loginPage.php")?>" align="right">Login</a>

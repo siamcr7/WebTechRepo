@@ -6,6 +6,7 @@
 	includeThis("customer","Auth/authorization.php");
 ?>
 
+<script src = <?=hrefThis("resource","js/ajaxCall.js")?> ></script>
 <script src = <?=hrefThis("resource","js/calTotalImgInADir.js")?> ></script>
 <script src = <?=hrefThis("resource","js/CustomerPages/BasicStructure/header.js")?> ></script>
 

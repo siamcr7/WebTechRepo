@@ -4,50 +4,51 @@
 <?php
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
+<form action = "<?=hrefThis("handler","confirmOrder.php")?>">
+	<h1>Order Confirm Details</h1>
+	<?php
+		if(session_id() == "")session_start();
+		includeThis("database","allDBFunction.php");
 		
-			<h1>Order Confirm Details</h1>
-			<?php
-				/*
-				Make the dynamic table more dynamic so that:
-				we can print any colomb name as we wish by giving in the first value.
-				Also find a way to print the specific col value only. one way is to build
-				another arr and send it. For now using only the static values to show.
-				*/
-				
-				/*
-				include("../DynamicTable/index.php");
-				buildDynamicTable($_SESSION["userList"]);
-				viewDynamicTableInHTML(true);
-				*/
-				
-				$iCnt = 0;
-				$userArr["Order ID"] = "12";
-				$userArr["Food Price"] = "3000";
-				$userArr["Vat"] = "200";
-				$userArr["Delivery Cost"] = "100";
-				$userArr["Total Price"] = "3300 BDT";
-				$userList[$iCnt++] = $userArr;
-				
-				
-				includeThis("dynamicTable","index.php");
-				buildDynamicTable($userList);
-				viewVerticalTable2Col();
-			?>
+		$customerOrderId = getIdByInfo2("status","addedToCart","customerId",$_SESSION["curUser"]["id"],"customer_order");
+
+		if($customerOrderId != 0)
+		{
+			$customerOrderFood = getFullTable("customer_order_food");
+			$totalPrice = 0;
+			for($i=0;$i<count($customerOrderFood);$i++)
+			{
+				if($customerOrderFood[$i]["customerOrderId"] == $customerOrderId)
+				{
+					$foodId = $customerOrderFood[$i]["foodId"];
+					$price = (int)getInfoByID($foodId,"food","price");
+					$totalPrice += ($price*(int)$customerOrderFood[$i]["quantity"]);
+				}
+			}
 			
-			<p align="center">
-				<fieldset align="center">
-					<legend>Payment Option</legend>
-					<input name = "paymentOption" type = "radio" />Bkash
-					<input name = "paymentOption" type = "radio" />Cash On Delivery
-				</fieldset>
-				<p align="center">
-				Confirm Address:  <input value = "H 127, B 1, Banani, Dhaka" /> <br>
-				Confirm Phone Number:  <input value = "	017675679598" /> <br>
-				</p>
-			</p>
+			$userArr["Order ID"] = $customerOrderId;
+			$userArr["Total Food Price"] = $totalPrice;
+			$userArr["Vat (15%)"] = (float)$totalPrice * .15;
+			$userArr["Delivery Cost"] = "100";
+			$userArr["Total Price (BDT)"] = (float)$userArr["Total Food Price"] + $userArr["Vat (15%)"] + $userArr["Delivery Cost"];
 			
-			 <h2 align = "center"> <input type = "submit" value = "Confirm Order" /> </h2>
-			
+			$userList[0] = $userArr;
+			includeThis("dynamicTable","index.php");
+			buildDynamicTable($userList);
+			viewVerticalTable2Col();
+		}	
+	?>
+	
+	<p align="center">
+		<fieldset align="center">
+			<legend>Payment Option</legend>
+			<input name = "paymentMethod" type = "radio" checked value = "bKash" />bKash
+			<input name = "paymentMethod" type = "radio" value = "cashOnDelivery"/>Cash On Delivery
+		</fieldset>
+	</p>
+	
+	 <h2 align = "center"> <input type = "submit" value = "Confirm Order" /> </h2>
+</form>
 <?php
 	includeThis("customer","BasicStructure/loadLower.php");
 ?>

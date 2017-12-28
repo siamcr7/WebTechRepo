@@ -6,4 +6,8 @@
 	{
 		header("location:".hrefThis("public","loginPage.php"));
 	}
+	if(empty($_SESSION["curUser"]) || $_SESSION["curUser"]["role"] != "customer")
+	{
+		header("location:".hrefThis("public","loginPage.php"));
+	}
 ?>

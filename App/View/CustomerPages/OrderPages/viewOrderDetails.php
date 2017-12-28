@@ -5,72 +5,74 @@
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
 		
-			<h1>Order Detail of Order ID : 1</h1>
+			<h1>Order Detail of Order ID : <?=$_REQUEST["customerOrderId"]?></h1>
 			<?php
-				/*
-				Make the dynamic table more dynamic so that:
-				we can print any colomb name as we wish by giving in the first value.
-				Also find a way to print the specific col value only. one way is to build
-				another arr and send it. For now using only the static values to show.
-				*/
-				
-				/*
-				include("../DynamicTable/index.php");
-				buildDynamicTable($_SESSION["userList"]);
-				viewDynamicTableInHTML(true);
-				*/
-				
-				$iCnt = 0;
-				$userArr["Item"] = "Pizza Burger";
-				$userArr["Ingredients"] = "Bread, Beef, Jellapino, Cheese";
-				$userArr["Category"] = "Burger";
-				$userArr["Quantity"] = "2";
-				$userArr["Price"] = "280";
-				$userArr["Total Price"] = "560";
-				$userList[$iCnt++] = $userArr;
-				
-				
-				$userArr["Item"] = "Pizza";
-				$userArr["Ingredients"] = "Bread, Beef, Jellapino, Cheese";
-				$userArr["Category"] = "Pizza";
-				$userArr["Quantity"] = "2";
-				$userArr["Price"] = "100";
-				$userArr["Total Price"] = "200";
-				$userList[$iCnt++] = $userArr;
-
-				
-				includeThis("dynamicTable","index.php");
-				buildDynamicTable($userList);
-				viewDynamicTableInHTML(false,false);
+				$customerOrderId = $_REQUEST["customerOrderId"];
+				if($customerOrderId != 0)
+				{
+					$customerOrderFood = getFullTable("customer_order_food");
+					$quantity = 0;
+					$userList = array();
+					$iCnt = 0;
+					$imgLoc = hrefThis("resource","FoodPic/");
+					for($i=0;$i<count($customerOrderFood);$i++)
+					{
+						if($customerOrderFood[$i]["customerOrderId"] == $customerOrderId)
+						{
+							$foodId = $customerOrderFood[$i]["foodId"];
+							
+							$userArr["id"] = $foodId;
+							$userArr["Picture"] = $imgLoc."{$foodId}.png";
+							$userArr["Food Name"] = getInfoByID($foodId,"food","name");
+							$userArr["Food Type"] = getInfoByID ( getInfoByID($foodId,"food","catagoryId"), "catagory", "name" ) ;
+							$userArr["Ingredients"] = getArrayOfInfoFromAgg($foodId , "food","ingredients");
+							$userArr["Price (TK)"] = getInfoByID($foodId,"food","price");
+							$userArr["Rating"] = calCAvgRating($foodId);
+							$userArr["Total Quantity"] = $customerOrderFood[$i]["quantity"];
+							$userList[$iCnt++] = $userArr;
+						}
+					}
+					includeThis("dynamicTable","index.php");
+					buildDynamicTable($userList);
+					viewDynamicTableinHTMLFromCustomer();
+				}
 			?>
 			
 			<br>
 			<hr>
-			<h1>Receipt of Order ID : 1</h1>
+			<h1>Invoice of Order ID : <?=$_REQUEST["customerOrderId"]?></h1>
 			<?php
 
-				$userArr = array();
-				$userList = array();
-				$iCnt = 0;
-				$userArr["Order ID"] = "1";
-				$userArr["Food Price"] = "760";
-				$userArr["Vat"] = "200";
-				$userArr["Delivery Cost"] = "100";
-				$userArr["Total Price"] = "1060 BDT";	
-				$userList[$iCnt++] = $userArr;
-				
-				
-				//include("../DynamicTable/index.php");
-				buildDynamicTable($userList);
-				viewVerticalTable2Col();
+				if($customerOrderId != 0)
+				{
+					$customerOrderFood = getFullTable("customer_order_food");
+					$totalPrice = 0;
+					for($i=0;$i<count($customerOrderFood);$i++)
+					{
+						if($customerOrderFood[$i]["customerOrderId"] == $customerOrderId)
+						{
+							$foodId = $customerOrderFood[$i]["foodId"];
+							$price = (int)getInfoByID($foodId,"food","price");
+							$totalPrice += ($price*(int)$customerOrderFood[$i]["quantity"]);
+						}
+					}
+					
+					
+					$userArr = array();
+					$userList = array();
+					
+					$userArr["Order ID"] = $customerOrderId;
+					$userArr["Total Food Price"] = $totalPrice;
+					$userArr["Vat (15%)"] = (float)$totalPrice * .15;
+					$userArr["Delivery Cost"] = "100";
+					$userArr["Total Price (BDT)"] = (float)$userArr["Total Food Price"] + $userArr["Vat (15%)"] + $userArr["Delivery Cost"];
+					
+					$userList[0] = $userArr;
+					includeThis("dynamicTable","index.php");
+					buildDynamicTable($userList);
+					viewVerticalTable2Col();
+				}
 			?>
-			
-			<fieldset align="center">
-				<legend>Payment Option</legend>
-				<b>Payment Option :</b> Cash On Delivery <br>
-				<b>Confirm Address:</b> H 127, B 1, Banani, Dhaka <br>
-				<b>Confirm Phone Number:</b> 017675679598 <br>
-			</fieldset>
 			
 			<p align="center">
 			<input type = "submit" value = "Print Details">

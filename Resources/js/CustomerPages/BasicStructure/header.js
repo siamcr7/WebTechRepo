@@ -1,3 +1,35 @@
+function ajaxCall(phpDir,requestVar,requestVal) // ajax call funtion
+{
+	var req = new XMLHttpRequest();
+	req.open("GET",phpDir+"?"+requestVar+"="+requestVal,false);
+	req.send();
+	return req.responseText;
+}
+
+function ajaxCall2(phpDir) // ajax call funtion
+{
+	var req = new XMLHttpRequest();
+	req.open("GET",phpDir,false);
+	req.send();
+	return req.responseText;
+}
+
+function getID(element) // the id will be at the end of element.id
+{
+	var fullID = element.id; 
+	var tmp = "";
+	for(var i = fullID.length-1; i>=0;i--)
+	{
+		if(fullID[i] >= '0' && fullID[i] <= '9')tmp += fullID[i];
+		else break;
+	}
+	
+	var getID = "";
+	for(var i = tmp.length-1; i>=0;i--)getID += tmp[i];
+	
+	return (parseInt(getID));
+}
+
 // depends on calTotalImgInADir.js
 var totalImg = 0;
 
@@ -25,17 +57,19 @@ function resetLoadingGif()
 
 function decBy1(val)
 {
-	if(val <= 0)val = totalImg-1;
+	if(val <= 1)val = totalImg;
 	else val--;
 	return val;
 }
 
 function incBy1(val)
 {
-	if(val+1 >= totalImg)val = 0;
+	if(val+1 > totalImg)val = 1;
 	else val++;
 	return val;
 }
+
+
 
 function headerImgClick(typ,curElement)
 {
@@ -74,7 +108,10 @@ function headerImgClick(typ,curElement)
 	}
 	else
 	{
-		alert("go to food details!");
+		var foodId = getID(curElement);
+		var link = "/WebTechRepo/App/View/CustomerPages/Details/viewFoodDetails.php?foodId="+foodId;
+		document.location=link;
+		//alert(getID(curElement));
 	}
 	
 }
@@ -84,4 +121,4 @@ setInterval(function()
 	{ 
 		headerImgClick("right","");
 		resetLoadingGif();
-	}, 5000);
+	}, 10000);

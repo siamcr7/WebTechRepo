@@ -3,11 +3,12 @@
 ?>
 <?php
 	session_start();
+	includeThis("database","allDBFunction.php");
 	
 	$splChar = array("@","#","$","%");
-	function chkPass() /// validates correct pass
+	function chkPass() /// validates correct password
 	{
-		$s = $_REQUEST['pass'];
+		$s = $_REQUEST['password'];
 		global $splChar;
 		if(strlen($s) < 8)return false;
 		for($i=0;$i<strlen($s);$i++)
@@ -25,48 +26,60 @@
 	function valAll() /// validates all
 	{
 		$ok = true;
+		$msg = "";
+		unset($_SESSION["msg"]);
+		
+		$_SESSION["msg"]["password"] = "";
 		if(!chkPass())
 		{
-			echo "Check New Password Format<br>" , $ok = false;
+			$_SESSION["msg"]["password"] .= "Invalid Password. Password can only contain alpha numeric character and must have any of [@ # $ %] and have at least size of 8 characters.";
+			$ok = false;
 		}
-		if( !empty( $_SESSION["curUser"]) && $_REQUEST['curPass'] != $_SESSION["curUser"]["pass"])
+		
+		$_SESSION["msg"]["currentPassword"] = "";
+		if( !empty( $_SESSION["curUser"]) && $_REQUEST['currentPassword'] != $_SESSION["curUser"]["password"])
 		{
-			echo "Check Current Password!<br>" , $ok = false;
+			$_SESSION["msg"]["currentPassword"] .= "Wrong Current Password!"; 
+			$ok = false;
 		}
-		if($_REQUEST['pass'] != $_REQUEST['rePass'])
+		
+		$_SESSION["msg"]["rePassword"] = "";
+		if($_REQUEST['password'] != $_REQUEST['rePassword'])
 		{
-			echo "New password and retype new password did not match!<br>" , $ok = false;
+			$_SESSION["msg"]["rePassword"] .= "New password and retype new password did not match!";
+			$ok = false;
 		}
 		return $ok;
 	}
 
-	function doTheUpdate()
-	{
-		if(empty($_SESSION["userList"]))return false;
-		foreach($_SESSION["userList"] as $key => $curUser)
-		{
-			if($curUser["uN"] == $_SESSION["curUser"]["uN"])
-			{
-				$curUser["pass"] = $_REQUEST["pass"];
-				
-				$_SESSION["userList"][$key] = $curUser;
-				$_SESSION["curUser"] = $curUser;
-				return true;
-			}
-		}
-		return false;
-	}
 	
 	if(valAll())
 	{
-		if(doTheUpdate())
+		$user["password"] =  $_REQUEST['password'];
+		
+		$res = update($user,"user",$_SESSION["curUser"]["id"]);
+
+		if($res == true)
 		{
-			echo "Successfully password Update";
-			/// write the new session_userList in fileDB
-			include($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/FileDB/fileDBFunction.php");
-			writeSessionUserListInFileDB();
+			$go = hrefThis("customer","AccountsPages/changePasswordPage.php");
+			echo"<script>
+                alert('Successfully Updated!');
+				document.location = '{$go}';
+            </script>";
+			$_SESSION["curUser"] = getRowByID($_SESSION["curUser"]["id"],"user");
 		}
-		else echo "Unsuccessful password Update";
+		else
+		{
+			$go = hrefThis("customer","AccountsPages/changePasswordPage.php");
+			echo"<script>
+                alert('Error Occurred! Try Again!');
+				document.location = '{$go}';
+            </script>";
+		}
+	}
+	else
+	{
+		header("location:".hrefThis("customer","AccountsPages/changePasswordPage.php?msg=ase"));
 	}
 	
 	//echo "YOLO";

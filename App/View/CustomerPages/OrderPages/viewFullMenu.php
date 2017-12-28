@@ -1,10 +1,12 @@
 <?php
 	include_once($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/app/Controller/index.php");
+	includeThis("database","allDBFunction.php");
 ?>
 <?php
 	includeThis("customer","BasicStructure/loadUpper.php");
 ?>
 
+<script src = "<?=hrefThis("resource","js/ajaxCall.js")?>" ></script>
 <script src = "<?=hrefThis("resource","js/CustomerPages/OrderPages/addToCart.js")?>" ></script>
 <script src = "<?=hrefThis("resource","js/calTotalImgInADir.js")?>" ></script>
 <script src = "<?=hrefThis("resource","js/CustomerPages/OrderPages/nextPrevPage.js")?>" ></script>
@@ -12,63 +14,75 @@
 		
 	<h1>Food List</h1>
 	
-	<div id = "viewCartSpan" align="right" hidden>
+	<span id = "viewCartSpan" align="right" hidden>
 		<img height = "25" src = "<?=hrefThis("resource","OtherPic/cart.png")?>" />
 		<a href= "<?=hrefThis("customer","OrderPages/viewCartPage.php")?>" >
 			<h3 id ="viewCart">View Cart</h3>
 		</a>
 		<p id = "cartDetails"></p>
-	</div>
+	</span>
 	
 	<hr>
+	
+<form action = "<?=hrefThis("handler","searchFood.php");?>" >
 	<p align="center">
-		Food Name: <input name = "searchStr" value = "" style="width: 50"/>
+		Food Name: <input name = "searchByName" value = "" style="width: 50"/>
 		| 
 		Food Type:
-		<select name = "searchType">
-			<option value = "nothing">select</option>
-			<option value = "name">Burger</option>
-			<option value = "name">Pizza</option>
-			<option value = "name">Thai Food</option>
+		<select name = "searchByCatagory">
+			<option value = "">select</option>
+			
+			<?php
+				$catagory = getFullTable("catagory");
+				for($i=0;$i<count($catagory);$i++)
+				{
+					echo "<option value = {$catagory[$i]['id']}>{$catagory[$i]['name']}</option>";
+				}
+			?>
+			
 		</select>
 		| 
 		Ingredients 
-		<select name = "searchType">
-			<option value = "nothing">select</option>
-			<option value = "name">Beef</option>
-			<option value = "name">Chicken</option>
-			<option value = "name">Mushroom</option>
+		<select name = "searchByIngredients">
+			<option value = "">select</option>
+			<?php
+				$ingredients = getFullTable("ingredients");
+				for($i=0;$i<count($ingredients);$i++)
+				{
+					echo "<option value = {$ingredients[$i]['id']}>{$ingredients[$i]['name']}</option>";
+				}
+			?>
 		</select>
 		|
 		Price Range:
-		<input name = "searchStr" value = "0" style="width: 50"/>
+		<input name = "searchByPriceLow" value = "0" style="width: 50"/>
 		-
-		<input name = "searchStr" value = "1000000" style="width: 50"/>
+		<input name = "searchByPriceHigh" value = "1000000" style="width: 50"/>
 		| 
 		Rating Range:
-		<input name = "searchStr" value = "0" style="width: 50"/>
+		<input name = "searchByRatingLow" value = "0" style="width: 50"/>
 		-
-		<input name = "searchStr" value = "5" style="width: 50"/>
+		<input name = "searchByRatingHigh" value = "5" style="width: 50"/>
 		|
 		<input type = "checkbox"/> Only Offers! |
 		<input type = "submit"/>
 		
 		<br>
 	</p>
+</form>
+
 	<hr>
 	
 	<?php	
-		includeThis("database","allDBFunction.php");
-		
-		$insArr = array();
-		
-		$insArr["name"] = "'Beverage'";
-		$res = insert($insArr,"catagory");
-		var_dump($res);
-		
 		
 		$foodTable = array();
 		$foodTable = getFullTable("food");
+		
+		if(!empty($_SESSION["searchResult"]))
+		{
+			$foodTable = $_SESSION["searchResult"];
+			unset($_SESSION["searchResult"]);
+		}
 		
 		$imgLoc = hrefThis("resource","FoodPic/");
 		$userList = array();
@@ -81,7 +95,7 @@
 			$userArr["Food Type"] = getInfoByID($foodTable[$i]["catagoryId"] , "catagory","name");
 			$userArr["Ingredients"] = getArrayOfInfoFromAgg($foodTable[$i]["id"] , "food","ingredients");
 			$userArr["Price (TK)"] = $foodTable[$i]["price"];
-			$userArr["Rating"] = "4.8"; /// get from other tables
+			$userArr["Rating"] = calCAvgRating($foodTable[$i]["id"]); /// get from other tables
 			$userArr["Quantity"] = "0";
 			$userList[$i] = $userArr;
 		}
@@ -90,10 +104,10 @@
 		buildDynamicTable($userList);
 		viewDynamicTableinHTMLFromCustomer(true);
 	?>
-	<p align="right">
+	<p align="right" hidden>
 		<input type = "submit" value = "Add All To Cart"/>
 	</p>
-	<p align="center">
+	<p align="center" hidden>
 		<input type = "button" value = "previous page" onclick = "goToNextPage()"/>
 		<input type = "button" value = "next page" onclick = "goToNextPage()"/>
 		<br/>
