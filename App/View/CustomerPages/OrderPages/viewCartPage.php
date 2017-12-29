@@ -29,7 +29,8 @@
 						if($customerOrderFood[$i]["customerOrderId"] == $customerOrderId)
 						{
 							$foodId = $customerOrderFood[$i]["foodId"];
-							
+
+							$userArr = array();
 							$userArr["id"] = $foodId;
 							$userArr["Picture"] = $imgLoc."{$foodId}.png";
 							$userArr["Food Name"] = getInfoByID($foodId,"food","name");
@@ -53,9 +54,9 @@
 			
 			<h2 align="center">
 				TOTAL PRICE = <u id = "totalPrice"><?=$tot;?></u> BDT
-			</h2>
 			
-			<p align="center" > <a href = "<?=hrefThis("customer","OrderPages/orderConfirmPage.php") ?>" >Go To Order Confirm Page</a> </p>
+				<p align="center" > <a href = "<?=hrefThis("customer","OrderPages/orderConfirmPage.php") ?>" >Go To Order Confirm Page</a> </p>
+			</h2>
 			
 <?php
 	includeThis("customer","BasicStructure/loadLower.php");

@@ -4,4 +4,4 @@
 4. go to 127.0.0.1/WebTechRepo/
 
 id: a
-pass: 123456789$
+pass: 1
