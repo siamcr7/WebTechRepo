@@ -72,7 +72,7 @@
 		<tr>
 			<th>Food Id</th>
 			<th>Ingredients Id</th>
-			
+			<th colspan="2">action</th>
 			</tr>
 
 		<?php while($row=mysqli_fetch_array($result)) { ?>
@@ -80,6 +80,13 @@
 			<td><?php echo $row['foodId'];?></td>
 			<td><?php echo $row['ingredientsId'];?></td>
 			
+			<td>
+				<a href="#">Edit</a>
+			</td>
+
+			<td>
+				<a href="#">Delete</a>
+			</td>
 		</tr>
 		<?php }?>
 

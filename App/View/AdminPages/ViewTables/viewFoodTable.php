@@ -81,9 +81,12 @@
 			<td><?php echo $row['name'];?></td>
 			<td><?php echo $row['price'];?></td>
 			<td><?php echo $row['status'];?></td>
+			<td>
+				<a href="#">Edit</a>
+			</td>
 
 			<td>
-				<a href="deleteFoodTable.php?del=<?php echo $row['id'];?>">Delete</a>
+				<a href="#">Delete</a>
 			</td>
 		</tr>
 		<?php }?>

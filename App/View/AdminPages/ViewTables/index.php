@@ -29,7 +29,7 @@
 				<!--<li><a href = "/WebTechRepo/App/View/AdminPages/ViewTables/viewVendorTable.php" align="right">View Ingredients Vendor</a></li>-->
 				<li><a href = "/WebTechRepo/App/View/AdminPages/ViewTables/viewSalesTable.php" align="right">View Sales Information</a></li>
 				<li><a href = "/WebTechRepo/App/View/AdminPages/ViewTables/viewCustomerOrderTable.php" align="right">View Customer Order</a></li>
-				<!--<li><a href = "/WebTechRepo/App/View/AdminPages/ViewTables/viewIngredientsOrderTable.php" align="right">View Ingredients Order</a></li>-->
+				<li><a href = "/WebTechRepo/App/View/AdminPages/ViewTables/viewIngredientsOrderTable.php" align="right">View Ingredients Order</a></li>
 			</ul>
 			
 		</td>

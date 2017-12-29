@@ -81,7 +81,11 @@
 			<td><?php echo $row['status'];?></td>
 			
 			<td>
-				<a href="deleteCustomerOrderTable.php?del=<?php echo $row['id'];?>">Delete</a>
+				<a href="#">Edit</a>
+			</td>
+
+			<td>
+				<a href="#">Delete</a>
 			</td>
 		</tr>
 		<?php }?>
