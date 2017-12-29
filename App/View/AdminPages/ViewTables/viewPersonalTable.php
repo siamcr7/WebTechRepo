@@ -84,11 +84,11 @@
 			<td><?php echo $row['status'];?></td>
 			
 			<td>
-				<a href="editPersonalTable.php?id=<?php echo $row['id'];?>">Edit</a>
+				<a href="deletePersonalTable.php?view=<?php echo $row['id'];?>">View</a>
 			</td>
-
+			
 			<td>
-				<a href="#">Delete</a>
+				<a href="deletePersonalTable.php?del=<?php echo $row['id'];?>">Delete</a>
 			</td>
 		</tr>
 		<?php }?>
