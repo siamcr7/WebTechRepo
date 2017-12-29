@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 28, 2017 at 10:06 AM
+-- Generation Time: Dec 28, 2017 at 03:16 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.9
 
@@ -67,9 +67,7 @@ INSERT INTO `customer_order` (`id`, `customerId`, `status`, `orderTime`, `receiv
 (3, 3, 'ordered', '2017-12-27 02:44:58', '0000-00-00', 'bKash'),
 (4, 4, 'ordered', '2017-12-27 05:46:48', '0000-00-00', 'cashOnDelivery'),
 (5, 3, 'ordered', '2017-12-27 09:27:15', '0000-00-00', 'cashOnDelivery'),
-(6, 3, 'ordered', '2017-12-28 08:00:55', '0000-00-00', 'cashOnDelivery'),
-(7, 3, 'ordered', '2017-12-28 09:55:27', '0000-00-00', 'bKash'),
-(8, 3, 'ordered', '2017-12-28 10:48:10', '0000-00-00', 'bKash');
+(6, 3, 'addedToCart', '2017-12-28 08:00:55', '0000-00-00', '');
 
 -- --------------------------------------------------------
 
@@ -93,11 +91,7 @@ INSERT INTO `customer_order_food` (`customerOrderId`, `foodId`, `quantity`) VALU
 (4, 1, 15),
 (5, 1, 2),
 (5, 2, 0),
-(6, 1, 10),
-(6, 4, 0),
-(6, 6, 0),
-(7, 1, 3),
-(8, 1, 2);
+(6, 1, 11);
 
 -- --------------------------------------------------------
 
@@ -212,30 +206,9 @@ CREATE TABLE `rating` (
 --
 
 INSERT INTO `rating` (`foodId`, `customerId`, `rating`) VALUES
-(1, 3, 3),
+(1, 3, 1),
 (1, 4, 2),
-(2, 3, 5),
-(3, 3, 3),
 (5, 4, 5);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `sales`
---
-
-CREATE TABLE `sales` (
-  `id` int(100) NOT NULL,
-  `customer_order_id` int(100) NOT NULL,
-  `deliveryman_id` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sales`
---
-
-INSERT INTO `sales` (`id`, `customer_order_id`, `deliveryman_id`) VALUES
-(1, 6, 2);
 
 -- --------------------------------------------------------
 
@@ -264,11 +237,9 @@ CREATE TABLE `user` (
 
 INSERT INTO `user` (`id`, `name`, `userName`, `email`, `address`, `location`, `role`, `password`, `status`, `regDate`, `phoneNo`, `picLink`) VALUES
 (1, 'Jamil Siam Taluker', 'aaaa', 'siam_cr7@yahoo.com', 'B 1/11 Humayan Road, Dhaka', 'banani', 'customer', '123456789$', 'active', '2017-12-27 01:06:07', '01675679598', ''),
-(3, 'Jamil Siam', 'a', 'a@b.c', 'a', 'dhanmondi', 'customer', '123456789$', 'active', '2017-08-01 00:00:00', '12345678912', ''),
+(3, 'a a a a a', 'a', 'a@b.c', 'a', 'dhanmondi', 'customer', 'a', 'active', '2017-08-01 00:00:00', '12345678912', ''),
 (4, 'b', 'b', 'b', 'bangladesh', 'gulshan', 'customer', 'b', 'active', '2017-03-03 00:00:00', '12345678912', ''),
-(5, 'admin', 'admin', 'admin@admin.com', 'a', 'gulshan', 'admin', 'admin', 'active', '2017-12-01 00:00:00', '12345678912', ''),
-(6, 'Jamil Siam YOLOOLO', 'siamcr7', 'siam_cr7@yahhh.com', 'onek duur', 'dhanmondi', 'customer', '123456789$', 'active', '2017-12-28 11:01:11', '01675679598', ''),
-(7, 'b', 'bbbb', 'b@a.com', '', '', 'customer', 'bbbb', 'active', '0000-00-00 00:00:00', '', '');
+(5, 'admin', 'admin', 'admin@admin.com', 'a', 'gulshan', 'admin', 'admin', 'active', '2017-12-01 00:00:00', '12345678912', '');
 
 --
 -- Indexes for dumped tables
@@ -317,12 +288,6 @@ ALTER TABLE `rating`
   ADD PRIMARY KEY (`foodId`,`customerId`);
 
 --
--- Indexes for table `sales`
---
-ALTER TABLE `sales`
-  ADD PRIMARY KEY (`id`);
-
---
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
@@ -343,7 +308,7 @@ ALTER TABLE `catagory`
 -- AUTO_INCREMENT for table `customer_order`
 --
 ALTER TABLE `customer_order`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `food`
@@ -358,16 +323,10 @@ ALTER TABLE `ingredients`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
--- AUTO_INCREMENT for table `sales`
---
-ALTER TABLE `sales`
-  MODIFY `id` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

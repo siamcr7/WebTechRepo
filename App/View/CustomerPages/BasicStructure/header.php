@@ -32,27 +32,27 @@
 		<table style=width:100%>
 			<tr align = "center" width = "5%">
 				<td align = "left">
-					<img src = "<?=hrefThis("resource","OtherPic/leftArrow.png")?>" alt = "No Picture" height = "50" onclick = "headerImgClick('left' , this)"/>
+					<img src = "<?=hrefThis("resource","OtherPic/leftArrow.png")?>" alt = "No Picture" height = "50" onclick = "headerImgClick('left' , this)" onMouseOver = "changeMouseCursor(this)" onmouseenter = "stopSlide()" onmouseout = "startSlide()"/>
 				</td>
 				
 				<td align = "center" width = "30%">
-					<img id = "headImg1" src = "<?=hrefThis("resource","FoodPic/1.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)"/>
+					<img id = "headImg1" src = "<?=hrefThis("resource","FoodPic/1.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)" onMouseOver = "changeMouseCursor(this)" onmouseenter = "stopSlide()" onmouseout = "startSlide()"/>
 				</td>
 				
 				<td align = "center" width = "30%">
-					<img id = "headImg2" src = "<?=hrefThis("resource","FoodPic/2.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)"/>
+					<img id = "headImg2" src = "<?=hrefThis("resource","FoodPic/2.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)" onMouseOver = "changeMouseCursor(this)" onmouseenter = "stopSlide()" onmouseout = "startSlide()"/>
 				</td >
 				
 				<td align = "center" width = "30%">
-					<img id = "headImg3" src = "<?=hrefThis("resource","FoodPic/3.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)"/>
+					<img id = "headImg3" src = "<?=hrefThis("resource","FoodPic/3.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)" onMouseOver = "changeMouseCursor(this)" onmouseenter = "stopSlide()" onmouseout = "startSlide()"/>
 				</td>
 				
 				<td align = "center" width = "30%">
-					<img id = "headImg4" src = "<?=hrefThis("resource","FoodPic/4.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)"/>
+					<img id = "headImg4" src = "<?=hrefThis("resource","FoodPic/4.png")?>" alt = "No Picture" height = "150" onclick = "headerImgClick('food' , this)" onMouseOver = "changeMouseCursor(this)" onmouseenter = "stopSlide()" onmouseout = "startSlide()"/>
 				</td>
 				
 				<td align = "right" width = "5%">
-					<img src = "<?=hrefThis("resource","OtherPic/rightArrow.png")?>" alt = "No Picture" height = "50" onclick = "headerImgClick('right' , this)" />
+					<img src = "<?=hrefThis("resource","OtherPic/rightArrow.png")?>" alt = "No Picture" height = "50" onclick = "headerImgClick('right' , this)" onMouseOver = "changeMouseCursor(this)" onmouseenter = "stopSlide()" onmouseout = "startSlide()"/>
 				</td>
 			</tr>
 		</table>

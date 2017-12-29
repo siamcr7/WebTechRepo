@@ -45,7 +45,6 @@ function getFileName(dir) /// get the file name; returns the number
 	var ret = "";
 	for(var i = tmp.length-1;i>=0;i--)ret += tmp[i];
 	ret = parseInt(ret);
-	//alert(ret);
 	return ret;
 }
 
@@ -57,19 +56,44 @@ function resetLoadingGif()
 
 function decBy1(val)
 {
-	if(val <= 1)val = totalImg;
+	if(val == 1)val = totalImg;
 	else val--;
 	return val;
 }
 
 function incBy1(val)
 {
-	if(val+1 > totalImg)val = 1;
+	if(val == totalImg)val = 1;
 	else val++;
 	return val;
 }
 
+var refreshIntervalId;
+function changeMouseCursor(element)
+{
+	element.style.cursor = "pointer";
+}
 
+function stopSlide()
+{
+	clearInterval(refreshIntervalId);
+}
+
+function startSlide()
+{
+	resetLoadingGif();
+	refreshIntervalId =	setInterval(function()
+		{ 
+			headerImgClick("right","");
+			resetLoadingGif();
+		}, 5000);
+	
+}
+
+function getIDFromSrc(element) // returns the id of this image from the source name
+{
+	return parseInt(getFileName(element.src));
+}
 
 function headerImgClick(typ,curElement)
 {
@@ -84,10 +108,10 @@ function headerImgClick(typ,curElement)
 		//using php
 		//var img1Val = decBy1( parseInt(ajaxCall("/WebTechRepo/HelperFunction/getFileName.php" , "dir" , headImg1.src)) );
 
-		var img1Val = decBy1( parseInt(getFileName(headImg1.src)) );
-		var img2Val = decBy1( parseInt(getFileName(headImg2.src)) );
-		var img3Val = decBy1( parseInt(getFileName(headImg3.src)) );
-		var img4Val = decBy1( parseInt(getFileName(headImg4.src)) );
+		var img1Val = decBy1( getIDFromSrc(headImg1) );
+		var img2Val = decBy1( getIDFromSrc(headImg2) );
+		var img3Val = decBy1( getIDFromSrc(headImg3) );
+		var img4Val = decBy1( getIDFromSrc(headImg4) );
 		
 		headImg1.src = dir+img1Val+".png";
 		headImg2.src = dir+img2Val+".png";
@@ -96,10 +120,10 @@ function headerImgClick(typ,curElement)
 	}
 	else if(typ == "left")
 	{
-		var img1Val = incBy1( parseInt(getFileName(headImg1.src)) );
-		var img2Val = incBy1( parseInt(getFileName(headImg2.src)) );
-		var img3Val = incBy1( parseInt(getFileName(headImg3.src)) );
-		var img4Val = incBy1( parseInt(getFileName(headImg4.src)) );
+		var img1Val = incBy1( getIDFromSrc(headImg1) );
+		var img2Val = incBy1( getIDFromSrc(headImg2) );
+		var img3Val = incBy1( getIDFromSrc(headImg3) );
+		var img4Val = incBy1( getIDFromSrc(headImg4) );
 		
 		headImg1.src = dir+img1Val+".png";
 		headImg2.src = dir+img2Val+".png";
@@ -108,17 +132,18 @@ function headerImgClick(typ,curElement)
 	}
 	else
 	{
-		var foodId = getID(curElement);
+		var foodId = getIDFromSrc(curElement);
 		var link = "/WebTechRepo/App/View/CustomerPages/Details/viewFoodDetails.php?foodId="+foodId;
 		document.location=link;
-		//alert(getID(curElement));
 	}
 	
 }
 
 totalImg = calTotalImg();
-setInterval(function()
-	{ 
-		headerImgClick("right","");
-		resetLoadingGif();
-	}, 10000);
+
+refreshIntervalId =	setInterval(function()
+		{ 
+			headerImgClick("right","");
+			resetLoadingGif();
+		}, 5000);
+

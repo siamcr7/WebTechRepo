@@ -174,7 +174,7 @@
 						else if($key == "Picture")
 						{
 				?>
-							<td align = "center"><img id="foodImg<?=$curId;?>" src= <?=$value;?> alt="No Picture" height="150" onclick = "headerImgClick('food',this)" ></td>
+							<td align = "center"><img id="foodImg<?=$curId;?>" src= <?=$value;?> alt="No Picture" height="150" onclick = "headerImgClick('food',this)" onMouseOver = "changeMouseCursor(this)" ></td>
 				<?php
 						}
 						else if($key == "Quantity")
