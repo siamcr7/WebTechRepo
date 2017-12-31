@@ -2,6 +2,6 @@
 	include_once($_SERVER['DOCUMENT_ROOT']."/WebTechRepo/app/Controller/index.php");
 ?>
 <?php
-	/// no commnet
+	/// edited by conflict edited okay?
 	header("location:".hrefThis("public","index.php"));
 ?>
